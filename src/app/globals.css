@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  /* Profesional color palette - blues and grays */
+  --color-brand-50: #f0f4f8;
+  --color-brand-100: #e0e7f0;
+  --color-brand-200: #bac8d8;
+  --color-brand-300: #9db0c2;
+  --color-brand-400: #7c95ab;
+  --color-brand-500: #5a7a8c;
+  --color-brand-600: #3d5f6b;
+  --color-brand-700: #2b424e;
+  --color-brand-800: #1f303a;
+  --color-brand-900: #161b22;
+  --color-brand-950: #0d1117;
+
+  /* Accent colors */
+  --color-accent-500: #2563eb;
+  --color-accent-600: #1d4ed8;
+  --color-accent-400: #60a5fa;
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Fira Code", "Consolas", monospace;
+}
+
+body {
+  @apply bg-brand-50 text-brand-950 antialiased;
+}
