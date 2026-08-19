@@ -134,7 +134,7 @@ export default function CV() {
                 </ul>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </section>
     </div>

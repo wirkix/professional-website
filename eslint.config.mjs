@@ -1,25 +1,27 @@
-import nextConfig from "next/eslint/camera-ready";
-import { flatten } from "eslint-define-config";
-import { resolve } from "path";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import { FlatCompat } from "@eslint/eslintrc";
 
-module.exports = {
-  extends: [
-    "next/core-web-vitals",
-    "plugin:next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended",
-  ],
-  rules: {
-    // Override specific rules as needed in the project
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "react/react-in-jsx-scope": "off",
-  },
-  settings: {
-    react: {
-      version: "detect",
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+const eslintConfig = [
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      // Override specific rules as needed in the project
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "react/react-in-jsx-scope": "off",
     },
   },
-  ignorePatterns: [
-    "**/local_files/**",
-  ],
-};
+  {
+    ignores: ["local_files/**", ".next/**", "out/**", "build/**", "node_modules/**", "next-env.d.ts"],
+  },
+];
+
+export default eslintConfig;
