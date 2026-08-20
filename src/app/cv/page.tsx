@@ -69,12 +69,13 @@ export default function CV() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
               <div>
                 <p><span className="font-medium text-brand-800">Nombre:</span> <span className="text-brand-900">Alois Wirkes</span></p>
-                <p><span className="font-medium text-brand-800">Especialidad:</span> <span className="text-brand-900">Senior Software Engineer · Business Intelligence &amp; Datos</span></p>
+                <p><span className="font-medium text-brand-800">Cargo Actual:</span> <span className="text-brand-900">Senior Software Engineer</span></p>
+                <p><span className="font-medium text-brand-800">Especialidad:</span> <span className="text-brand-900">Business Intelligence &amp; Datos</span></p>
                 <p><span className="font-medium text-brand-800">Ubicación:</span> <span className="text-brand-900">Lerma, Estado de México, México</span></p>
-                <p><span className="font-medium text-brand-800">Teléfono:</span> <span className="text-brand-900">+52 722 5570964</span></p>
                 <p><span className="font-medium text-brand-800">Disponibilidad:</span> <span className="text-brand-900">Disponible para trabajo remoto</span></p>
               </div>
               <div>
+                <p><span className="font-medium text-brand-800">Teléfono:</span> <span className="text-brand-900">+52 722 5570964</span></p>
                 <p><span className="font-medium text-brand-800">Email:</span> <span className="text-brand-900"><a href="mailto:alois.wirkes@gmail.com" className="text-brand-500 hover:underline">alois.wirkes@gmail.com</a></span></p>
                 <p><span className="font-medium text-brand-800">LinkedIn:</span> <span className="text-brand-900"><a href="https://www.linkedin.com/in/alois-wirkes/" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">Ver Perfil</a></span></p>
                 <p><span className="font-medium text-brand-800">GitHub:</span> <span className="text-brand-900"><a href="https://github.com/wirkix" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">Ver Perfil</a></span></p>
@@ -219,22 +220,49 @@ export default function CV() {
                 <ul className="text-brand-900 space-y-2">
                   <li>Oracle BI (OBI) • Tableau • Power BI</li>
                   <li>ODI • PDI (Pentaho) • OWB</li>
-                  <li>Redash</li>
+                  <li>dbt • Snowflake • Databricks</li>
                 </ul>
               </div>
               <div className="bg-white/5 rounded-lg p-4">
                 <h3 className="text-lg font-semibold text-brand-700 mb-3">Bases de Datos</h3>
                 <ul className="text-brand-900 space-y-2">
                   <li>Oracle • PostgreSQL • MySQL</li>
-                  <li>PL/SQL</li>
-                  <li>ClickHouse</li>
+                  <li>SQL Server • DBeaver</li>
                 </ul>
               </div>
               <div className="bg-white/5 rounded-lg p-4">
                 <h3 className="text-lg font-semibold text-brand-700 mb-3">Desarrollo &amp; Herramientas</h3>
                 <ul className="text-brand-900 space-y-2">
-                  <li>JavaScript • HTML5 • Java</li>
-                  <li>VirtualBox</li>
+                  <li>JavaScript • HTML5 • Java • Python</li>
+                  <li>VS Code • Cursor • VirtualBox</li>
+                </ul>
+              </div>
+              <div className="bg-white/5 rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-brand-700 mb-3">Stack Web</h3>
+                <ul className="text-brand-900 space-y-2">
+                  <li>TypeScript • Supabase • Vercel</li>
+                </ul>
+              </div>
+              <div className="bg-white/5 rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-brand-700 mb-3">IA</h3>
+                <ul className="text-brand-900 space-y-2">
+                  <li>Claude Code • Codex • Ollama</li>
+                </ul>
+              </div>
+              <div className="bg-white/5 rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-brand-700 mb-3">AWS</h3>
+                <ul className="text-brand-900 space-y-2">
+                  <li>IAM • S3 • Glue • DynamoDB</li>
+                  <li>Lambda • EC2 • ECR/ECS • EMR</li>
+                  <li>MWAA • DMS • Secrets Manager</li>
+                  <li>CloudFormation • LakeFormation</li>
+                </ul>
+              </div>
+              <div className="bg-white/5 rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-brand-700 mb-3">Sistemas Operativos</h3>
+                <ul className="text-brand-900 space-y-2">
+                  <li>Windows • macOS</li>
+                  <li>Linux (Ubuntu, Debian, ChromeOS)</li>
                 </ul>
               </div>
             </div>
