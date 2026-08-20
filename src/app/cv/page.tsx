@@ -233,14 +233,15 @@ export default function CV() {
               <div className="bg-white/5 rounded-lg p-4">
                 <h3 className="text-lg font-semibold text-brand-700 mb-3">Desarrollo &amp; Herramientas</h3>
                 <ul className="text-brand-900 space-y-2">
-                  <li>JavaScript • HTML5 • Java • Python</li>
-                  <li>VS Code • Cursor • VirtualBox</li>
+                  <li>Python • VS Code • Cursor</li>
+                  <li>Git (GitHub, GitLab) • VirtualBox</li>
                 </ul>
               </div>
               <div className="bg-white/5 rounded-lg p-4">
                 <h3 className="text-lg font-semibold text-brand-700 mb-3">Stack Web</h3>
                 <ul className="text-brand-900 space-y-2">
-                  <li>TypeScript • Supabase • Vercel</li>
+                  <li>TypeScript • JavaScript</li>
+                  <li>HTML5 • CSS • Supabase • Vercel</li>
                 </ul>
               </div>
               <div className="bg-white/5 rounded-lg p-4">
