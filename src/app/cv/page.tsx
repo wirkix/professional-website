@@ -221,6 +221,7 @@ export default function CV() {
                   <li>Oracle BI (OBI) • Tableau • Power BI</li>
                   <li>ODI • PDI (Pentaho) • OWB</li>
                   <li>dbt • Snowflake • Databricks</li>
+                  <li>Apache Kafka • Apache Airflow</li>
                 </ul>
               </div>
               <div className="bg-white/5 rounded-lg p-4">
@@ -234,7 +235,8 @@ export default function CV() {
                 <h3 className="text-lg font-semibold text-brand-700 mb-3">Desarrollo &amp; Herramientas</h3>
                 <ul className="text-brand-900 space-y-2">
                   <li>Python • VS Code • Cursor</li>
-                  <li>Git (GitHub, GitLab) • VirtualBox</li>
+                  <li>Git (GitHub, GitLab) • GitHub Actions</li>
+                  <li>Docker • Jupyter • VirtualBox</li>
                 </ul>
               </div>
               <div className="bg-white/5 rounded-lg p-4">
@@ -264,6 +266,12 @@ export default function CV() {
                 <ul className="text-brand-900 space-y-2">
                   <li>Windows • macOS</li>
                   <li>Linux (Ubuntu, Debian, ChromeOS)</li>
+                </ul>
+              </div>
+              <div className="bg-white/5 rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-brand-700 mb-3">Gestión de Proyectos</h3>
+                <ul className="text-brand-900 space-y-2">
+                  <li>Jira • Confluence</li>
                 </ul>
               </div>
             </div>
