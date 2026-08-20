@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Header from "@/components/Header";
 
 export default function Home() {
@@ -9,18 +10,30 @@ export default function Home() {
       {/* Hero Section */}
       <section className="container mx-auto px-6 py-20">
         <div className="flex flex-col items-center text-center">
-          {/* Profile image placeholder */}
-          <div className="w-32 h-32 rounded-full bg-brand-200 mb-6 flex items-center justify-center">
-            <span className="text-3xl text-brand-700 font-bold">AP</span>
+          {/* Profile photo */}
+          <div className="w-32 h-32 rounded-full overflow-hidden mb-6 ring-4 ring-brand-200">
+            <Image
+              src="/images/alois-wirkes.jpg"
+              alt="Alois Wirkes"
+              width={128}
+              height={128}
+              className="w-full h-full object-cover"
+              priority
+            />
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold text-brand-900 mb-4">
-            Currículum Profesional Portafolio
+            Alois Wirkes
           </h1>
+          <p className="text-brand-700 text-lg font-medium mb-4">
+            Senior Software Engineer · Business Intelligence &amp; Datos
+          </p>
           <p className="text-brand-600 text-lg max-w-2xl mb-8">
-            Desarrollador web full-stack especializado en soluciones escalables
-            con Next.js, Supabase y Tailwind CSS. Explora mi experiencia
-            profesional y mi portafolio de proyectos destacados.
+            Más de 7 años de experiencia en bases de datos y data warehouses
+            (Oracle, PostgreSQL, MySQL), ETLs (OWB, PDI) y desarrollo de
+            análisis y dashboards en suites de Business Intelligence (OBI,
+            Tableau, Power BI). Explora mi experiencia profesional y mi
+            portafolio de proyectos destacados.
           </p>
 
           <div className="flex gap-4">
@@ -48,7 +61,7 @@ export default function Home() {
           </h2>
           <div className="flex justify-center gap-8 flex-wrap">
             <a
-              href="https://www.linkedin.com/in/your-profile"
+              href="https://www.linkedin.com/in/alois-wirkes/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-brand-100 hover:text-accent-400 transition duration-200 flex items-center gap-2"
@@ -56,7 +69,7 @@ export default function Home() {
               LinkedIn →
             </a>
             <a
-              href="https://www.upwork.com/freelancer/profile"
+              href="https://www.upwork.com/freelancers/~01e9f20bfb142f07cb"
               target="_blank"
               rel="noopener noreferrer"
               className="text-brand-100 hover:text-accent-400 transition duration-200 flex items-center gap-2"
@@ -64,7 +77,7 @@ export default function Home() {
               Upwork →
             </a>
             <a
-              href="https://github.com/your-github-profile"
+              href="https://github.com/wirkix"
               target="_blank"
               rel="noopener noreferrer"
               className="text-brand-100 hover:text-accent-400 transition duration-200 flex items-center gap-2"
@@ -72,7 +85,7 @@ export default function Home() {
               GitHub →
             </a>
             <a
-              href="mailto:tu-email@ejemplo.com"
+              href="mailto:alois.wirkes@gmail.com"
               rel="noopener noreferrer"
               className="text-brand-100 hover:text-accent-400 transition duration-200 flex items-center gap-2"
             >
