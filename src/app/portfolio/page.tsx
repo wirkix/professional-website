@@ -3,12 +3,12 @@ import Header from "@/components/Header";
 const projects = [
   {
     id: 1,
-    title: "E-commerce Full Stack",
-    description: "Plataforma completa de comercio electrónico con carrito, pagos y panel de administración",
-    technologies: ["Next.js", "Supabase", "Stripe", "Tailwind"],
-    image: "/projects/ecommerce.jpg",
-    github: "https://github.com/your-github/ecommerce",
-    demo: "https://ecommerce-demo.vercel.app",
+    title: "Arte y Esencia",
+    description: "Sistema web para gestionar inventario, pedidos y catálogo de un emprendimiento: catálogo público con búsqueda y filtros, panel admin con control de insumos, recetas de producto e inventario auditable por movimientos",
+    technologies: ["Next.js", "Supabase", "PostgreSQL", "Vercel"],
+    image: "/projects/arte-y-esencia.jpg",
+    github: "https://github.com/wirkix/arte_y_esencia",
+    demo: "https://arteyesencia-zeta.vercel.app/",
     featured: true,
   },
   {
