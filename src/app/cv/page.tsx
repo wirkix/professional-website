@@ -51,13 +51,13 @@ export default function CV() {
           {/* Summary */}
           <div className="bg-white/5 rounded-xl p-6 mb-12">
             <p className="text-brand-800 leading-relaxed">
-              Más de 7 años de experiencia en bases de datos y data warehouses
+              Más de 10 años de experiencia en bases de datos y data warehouses
               (Oracle, PostgreSQL, MySQL), ETLs (OWB, PDI) y construcción de
               consultas y análisis (PL/SQL) para su visualización en suites
               de Business Intelligence (OBI, Tableau, Power BI). Experiencia
               liderando equipos de trabajo y proyectos BI, con interés en
-              gerencia de proyectos y tecnologías emergentes como Big Data,
-              NoSQL y Machine Learning.
+              gerencia de proyectos y tecnologías emergentes como Inteligencia
+              Artificial, Big Data, NoSQL y Machine Learning.
             </p>
           </div>
 
@@ -70,14 +70,15 @@ export default function CV() {
               <div>
                 <p><span className="font-medium text-brand-800">Nombre:</span> <span className="text-brand-900">Alois Wirkes</span></p>
                 <p><span className="font-medium text-brand-800">Especialidad:</span> <span className="text-brand-900">Senior Software Engineer · Business Intelligence &amp; Datos</span></p>
-                <p><span className="font-medium text-brand-800">Ubicación:</span> <span className="text-brand-900">Caracas, Venezuela</span></p>
-                <p><span className="font-medium text-brand-800">Teléfono:</span> <span className="text-brand-900">+58 414 3907009</span></p>
+                <p><span className="font-medium text-brand-800">Ubicación:</span> <span className="text-brand-900">Lerma, Estado de México, México</span></p>
+                <p><span className="font-medium text-brand-800">Teléfono:</span> <span className="text-brand-900">+52 722 5570964</span></p>
+                <p><span className="font-medium text-brand-800">Disponibilidad:</span> <span className="text-brand-900">Disponible para trabajo remoto</span></p>
               </div>
               <div>
                 <p><span className="font-medium text-brand-800">Email:</span> <span className="text-brand-900"><a href="mailto:alois.wirkes@gmail.com" className="text-brand-500 hover:underline">alois.wirkes@gmail.com</a></span></p>
-                <p><span className="font-medium text-brand-800">LinkedIn:</span> <span className="text-brand-900"><a href="https://www.linkedin.com/in/alois-wirkes/" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">linkedin.com/in/alois-wirkes</a></span></p>
-                <p><span className="font-medium text-brand-800">GitHub:</span> <span className="text-brand-900"><a href="https://github.com/wirkix" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">github.com/wirkix</a></span></p>
-                <p><span className="font-medium text-brand-800">Upwork:</span> <span className="text-brand-900"><a href="https://www.upwork.com/freelancers/~01e9f20bfb142f07cb" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">Ver perfil</a></span></p>
+                <p><span className="font-medium text-brand-800">LinkedIn:</span> <span className="text-brand-900"><a href="https://www.linkedin.com/in/alois-wirkes/" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">Ver Perfil</a></span></p>
+                <p><span className="font-medium text-brand-800">GitHub:</span> <span className="text-brand-900"><a href="https://github.com/wirkix" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">Ver Perfil</a></span></p>
+                <p><span className="font-medium text-brand-800">Upwork:</span> <span className="text-brand-900"><a href="https://www.upwork.com/freelancers/~01e9f20bfb142f07cb" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">Ver Perfil</a></span></p>
               </div>
             </div>
           </div>
@@ -253,6 +254,7 @@ export default function CV() {
                 <h3 className="text-lg font-semibold text-brand-700 mb-3">Intereses</h3>
                 <div className="flex flex-wrap gap-2">
                   {[
+                    "Inteligencia Artificial",
                     "Big Data",
                     "Aprendizaje Automático",
                     "Internet de las Cosas",

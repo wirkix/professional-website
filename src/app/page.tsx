@@ -25,11 +25,14 @@ export default function Home() {
           <h1 className="text-4xl md:text-5xl font-bold text-brand-900 mb-4">
             Alois Wirkes
           </h1>
-          <p className="text-brand-700 text-lg font-medium mb-4">
+          <p className="text-brand-700 text-lg font-medium mb-2">
             Senior Software Engineer · Business Intelligence &amp; Datos
           </p>
+          <span className="inline-block px-3 py-1 mb-4 bg-brand-100 text-brand-600 rounded-full text-sm font-medium">
+            Disponible para trabajo remoto
+          </span>
           <p className="text-brand-600 text-lg max-w-2xl mb-8">
-            Más de 7 años de experiencia en bases de datos y data warehouses
+            Más de 10 años de experiencia en bases de datos y data warehouses
             (Oracle, PostgreSQL, MySQL), ETLs (OWB, PDI) y desarrollo de
             análisis y dashboards en suites de Business Intelligence (OBI,
             Tableau, Power BI). Explora mi experiencia profesional y mi
