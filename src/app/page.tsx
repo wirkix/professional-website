@@ -88,6 +88,14 @@ export default function Home() {
               GitHub →
             </a>
             <a
+              href="https://wa.me/527225570964"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand-100 hover:text-accent-400 transition duration-200 flex items-center gap-2"
+            >
+              WhatsApp →
+            </a>
+            <a
               href="mailto:alois.wirkes@gmail.com"
               rel="noopener noreferrer"
               className="text-brand-100 hover:text-accent-400 transition duration-200 flex items-center gap-2"

@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Alois Wirkes - CV</title>
+<style>
+  @page { size: Letter; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    color: #1f2933;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  :root {
+    --teal: #2c7a7b;
+    --teal-dark: #1f5b5c;
+    --ink: #1f2933;
+    --muted: #6b7280;
+    --chip-bg: #eef2f3;
+  }
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    padding: 0.42in 0.6in 0.35in;
+  }
+  /* Header */
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 22px;
+    padding-bottom: 10px;
+    border-bottom: 2.5px solid var(--teal);
+    margin-bottom: 14px;
+  }
+  .header-left { flex: 1.5; }
+  .name {
+    font-size: 27px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    margin: 0 0 2px;
+    letter-spacing: 0.2px;
+  }
+  .title {
+    font-size: 12.5px;
+    color: #4b5563;
+    margin: 0 0 7px;
+    font-weight: 600;
+  }
+  .summary {
+    font-size: 9.8px;
+    line-height: 1.4;
+    color: #374151;
+    max-width: 470px;
+  }
+  .header-photo-wrap {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 2px;
+  }
+  .header-photo {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--teal);
+    display: block;
+  }
+  .header-contact {
+    flex: 1.05;
+    font-size: 9.2px;
+    line-height: 1.7;
+    color: #374151;
+    text-align: right;
+  }
+  .header-contact div { white-space: nowrap; }
+  .header-contact b { color: var(--ink); }
+
+  /* Body grid */
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1.62fr 1fr;
+    gap: 30px;
+  }
+  h2.section {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--teal-dark);
+    margin: 0 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 1.5px solid var(--teal);
+    font-weight: 700;
+    break-after: avoid;
+  }
+  section.block { margin-bottom: 13px; }
+  section.block:last-child { margin-bottom: 0; }
+
+  /* Experience */
+  .exp-item {
+    border-left: 3px solid var(--teal);
+    padding-left: 11px;
+    margin-bottom: 9px;
+    break-inside: avoid;
+  }
+  .exp-item:last-child { margin-bottom: 0; }
+  .exp-role {
+    font-size: 12.3px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 1px;
+  }
+  .exp-company {
+    font-size: 10.6px;
+    color: #374151;
+    margin: 0 0 1px;
+  }
+  .exp-meta {
+    font-size: 9.3px;
+    color: var(--muted);
+    font-style: italic;
+    margin: 0 0 5px;
+  }
+  .exp-item ul {
+    margin: 0;
+    padding-left: 14px;
+  }
+  .exp-item li {
+    font-size: 9.7px;
+    line-height: 1.45;
+    color: #374151;
+    margin-bottom: 3px;
+  }
+
+  /* Right column lists */
+  .chip-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    background: var(--chip-bg);
+    color: var(--teal-dark);
+    font-size: 9.3px;
+    font-weight: 600;
+    padding: 4px 9px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .cert-item, .edu-item { margin-bottom: 6px; break-inside: avoid; }
+  .cert-item:last-child, .edu-item:last-child { margin-bottom: 0; }
+  .cert-name, .edu-degree {
+    font-size: 10.3px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 1px;
+  }
+  .cert-org, .edu-org {
+    font-size: 9.6px;
+    color: #374151;
+    margin: 0 0 1px;
+  }
+  .cert-date, .edu-date {
+    font-size: 9px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .lang-item {
+    font-size: 10.3px;
+    color: #374151;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .lang-item span:last-child { color: var(--muted); font-size: 9.3px; }
+
+  /* Full-width skills section (forced onto its own page) */
+  .skills-block { break-before: page; padding-top: 0.42in; }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .skill-card {
+    background: var(--chip-bg);
+    border-left: 3px solid var(--teal);
+    border-radius: 3px;
+    padding: 8px 10px;
+    break-inside: avoid;
+  }
+  .skill-cat {
+    font-size: 9.8px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    margin: 0 0 3px;
+  }
+  .skill-list {
+    font-size: 9.2px;
+    line-height: 1.45;
+    color: #374151;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <div class="header-left">
+        <h1 class="name">Alois Wirkes</h1>
+        <p class="title">Senior Software Engineer &middot; Business Intelligence &amp; Datos</p>
+        <p class="summary">
+          +10 años de experiencia en bases de datos y data warehouses (Oracle, PostgreSQL, MySQL),
+          ETLs (OWB, PDI) y construcción de consultas y análisis (PL/SQL) para su visualización en
+          suites de Business Intelligence (OBI, Tableau, Power BI). Además, tengo experiencia liderando
+          equipos de trabajo y proyectos BI. Actualmente, me interesa desarrollar habilidades como
+          gerencia de proyectos, aprender nuevas tecnologías (Inteligencia Artificial, Big Data, NoSQL,
+          Machine Learning) y herramientas (SQL Server, Azure ML Studio) que son tendencia en el sector.
+        </p>
+      </div>
+      <div class="header-photo-wrap">
+        <img class="header-photo" src="{{PHOTO_SRC}}" alt="Alois Wirkes" />
+      </div>
+      <div class="header-contact">
+        <div><b>Tel&eacute;fono:</b> +52 722 5570964</div>
+        <div><b>Email:</b> alois.wirkes@gmail.com</div>
+        <div><b>Ubicaci&oacute;n:</b> Lerma, Estado de M&eacute;xico, M&eacute;xico</div>
+        <div><b>Disponibilidad:</b> Trabajo remoto</div>
+        <div><b>LinkedIn:</b> linkedin.com/in/alois-wirkes</div>
+        <div><b>GitHub:</b> github.com/wirkix</div>
+        <div><b>Upwork:</b> upwork.com/freelancers/~01e9f20bfb142f07cb</div>
+      </div>
+    </div>
+
+    <div class="body-grid">
+      <!-- Left column: Experience -->
+      <div>
+        <section class="block">
+          <h2 class="section">Experiencia Laboral</h2>
+
+          <div class="exp-item">
+            <p class="exp-role">Senior Software Engineer</p>
+            <p class="exp-company">KAVAK.com &middot; Caracas, Venezuela</p>
+            <p class="exp-meta">Junio 2020 &ndash; Presente</p>
+            <ul>
+              <li>Ingenier&iacute;a de datos y Business Intelligence: transformaci&oacute;n de datos diversos en insights y dashboards mediante AWS, Python y DBT.</li>
+              <li>Integraci&oacute;n de soluciones de IA en los flujos de an&aacute;lisis para incrementar el impacto de los productos de datos.</li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <p class="exp-role">Especialista BI</p>
+            <p class="exp-company">e-ABC Learning &middot; Caracas, Venezuela</p>
+            <p class="exp-meta">Mayo 2019 &ndash; Mayo 2020</p>
+            <ul>
+              <li>Estudiar y proponer mejoras para la herramienta interna de anal&iacute;ticas ELSA.</li>
+              <li>Desarrollar dashboards de indicadores para clientes y tem&aacute;ticas puntuales, como Mutual de Seguridad CChC (Chile).</li>
+              <li>Orquestar y desarrollar un proyecto piloto de Machine Learning con fines de obtener un producto comercial.</li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <p class="exp-role">Integrador de Datos</p>
+            <p class="exp-company">Matrix CPM Solutions C.A. &middot; Caracas, Venezuela</p>
+            <p class="exp-meta">Agosto 2018 &ndash; Octubre 2018</p>
+            <ul>
+              <li>Participar como integrador de datos en el proyecto BI de Claro Colombia usando ODI para los ETLs y Tableau para la visualizaci&oacute;n.</li>
+              <li>Obtener certificaciones sobre la suite de herramientas HortonWorks.</li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <p class="exp-role">L&iacute;der de Gesti&oacute;n de la Demanda</p>
+            <p class="exp-company">Veconinter C.A. &middot; Caracas, Venezuela</p>
+            <p class="exp-meta">Mayo 2017 &ndash; Enero 2018</p>
+            <ul>
+              <li>Gestionar la demanda de incidentes, requerimientos y proyectos IT mediante sistema de tickets.</li>
+              <li>Liderar el proyecto de renovaci&oacute;n de la p&aacute;gina web y de actualizaci&oacute;n del sistema de RR.HH. de la empresa.</li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <p class="exp-role">Docente Instructor</p>
+            <p class="exp-company">Universidad Central de Venezuela &middot; Caracas, Venezuela</p>
+            <p class="exp-meta">Octubre 2015 &ndash; Mayo 2017</p>
+            <ul>
+              <li>Impartir la materia Laboratorio General de Bases de Datos (Oracle).</li>
+              <li>Preparar material did&aacute;ctico e instalar/configurar el servidor de BD Oracle para los laboratorios.</li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <p class="exp-role">Consultor</p>
+            <p class="exp-company">Tian Consultores C.A. &middot; Caracas, Venezuela</p>
+            <p class="exp-meta">Noviembre 2012 &ndash; Marzo 2017</p>
+            <ul>
+              <li>Prototipo funcional de app Android nativa (Java/XML) para encuestas.</li>
+              <li>Liderar proyectos BI para Seguros Mercantil S.A. (OWB + OBI) y Banco Central de Venezuela (Pentaho Kettle + OBI).</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right column -->
+      <div>
+        <section class="block">
+          <h2 class="section">Certificaciones</h2>
+          <div class="cert-item">
+            <p class="cert-name">SCRUM Foundation Professional Certificate (SFPC)</p>
+          </div>
+          <div class="cert-item">
+            <p class="cert-name">Apache Kafka Series &ndash; Kafka Connect Hands-on Learning</p>
+          </div>
+          <div class="cert-item">
+            <p class="cert-name">Big Data sin Misterios</p>
+            <p class="cert-org">edX</p>
+            <p class="cert-date">Marzo 2020</p>
+          </div>
+          <div class="cert-item">
+            <p class="cert-name">Curso Completo Power BI Desktop</p>
+            <p class="cert-org">Udemy</p>
+            <p class="cert-date">Noviembre 2019</p>
+          </div>
+          <div class="cert-item">
+            <p class="cert-name">PartnerWorks Accredited Technical Track 1 y 2 Professional</p>
+            <p class="cert-org">HortonWorks PartnerWorks</p>
+            <p class="cert-date">Agosto &ndash; Octubre 2018</p>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2 class="section">Formaci&oacute;n Acad&eacute;mica</h2>
+          <div class="edu-item">
+            <p class="edu-degree">Master of Business Administration (MBA)</p>
+            <p class="edu-org">IESA</p>
+            <p class="edu-date">Abril 2016 &ndash; Febrero 2022</p>
+          </div>
+          <div class="edu-item">
+            <p class="edu-degree">Licenciatura en Computaci&oacute;n, Bases de Datos</p>
+            <p class="edu-org">Universidad Central de Venezuela</p>
+            <p class="edu-date">2008 &ndash; 2015</p>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2 class="section">Idiomas</h2>
+          <div class="lang-item"><span>Espa&ntilde;ol</span><span>Nativo</span></div>
+          <div class="lang-item"><span>Ingl&eacute;s</span><span>Profesional</span></div>
+        </section>
+
+        <section class="block">
+          <h2 class="section">Intereses</h2>
+          <div class="chip-wrap">
+            <span class="chip">Inteligencia Artificial</span>
+            <span class="chip">Big Data</span>
+            <span class="chip">Aprendizaje Autom&aacute;tico</span>
+            <span class="chip">IoT</span>
+            <span class="chip">Gerencia de Proyectos</span>
+            <span class="chip">Equipos de Alto Desempe&ntilde;o</span>
+            <span class="chip">NoSQL</span>
+            <span class="chip">Datos Abiertos</span>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section class="block skills-block">
+      <h2 class="section">Habilidades T&eacute;cnicas</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <p class="skill-cat">BI &amp; ETL</p>
+          <p class="skill-list">Oracle BI (OBI) &bull; Tableau &bull; Power BI &bull; ODI &bull; PDI (Pentaho) &bull; OWB &bull; dbt &bull; Snowflake &bull; Databricks &bull; Apache Kafka &bull; Apache Airflow</p>
+        </div>
+        <div class="skill-card">
+          <p class="skill-cat">Bases de Datos</p>
+          <p class="skill-list">Oracle &bull; PostgreSQL &bull; MySQL &bull; SQL Server &bull; DBeaver</p>
+        </div>
+        <div class="skill-card">
+          <p class="skill-cat">Desarrollo &amp; Herramientas</p>
+          <p class="skill-list">Python &bull; VS Code &bull; Cursor &bull; Git (GitHub, GitLab) &bull; GitHub Actions &bull; Docker &bull; Jupyter &bull; VirtualBox</p>
+        </div>
+        <div class="skill-card">
+          <p class="skill-cat">Stack Web</p>
+          <p class="skill-list">TypeScript &bull; JavaScript &bull; HTML5 &bull; CSS &bull; Supabase &bull; Vercel</p>
+        </div>
+        <div class="skill-card">
+          <p class="skill-cat">IA</p>
+          <p class="skill-list">Claude Code &bull; Codex &bull; Ollama</p>
+        </div>
+        <div class="skill-card">
+          <p class="skill-cat">AWS</p>
+          <p class="skill-list">IAM &bull; S3 &bull; Glue &bull; DynamoDB &bull; Lambda &bull; EC2 &bull; ECR/ECS &bull; EMR &bull; MWAA &bull; DMS &bull; Secrets Manager &bull; CloudFormation &bull; LakeFormation</p>
+        </div>
+        <div class="skill-card">
+          <p class="skill-cat">Sistemas Operativos</p>
+          <p class="skill-list">Windows &bull; macOS &bull; Linux (Ubuntu, Debian, ChromeOS)</p>
+        </div>
+        <div class="skill-card">
+          <p class="skill-cat">Gesti&oacute;n de Proyectos</p>
+          <p class="skill-list">Jira &bull; Confluence</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
