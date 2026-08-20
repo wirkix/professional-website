@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import LivePreview from "@/components/LivePreview";
 
 const projects = [
   {
@@ -10,6 +11,7 @@ const projects = [
     github: "https://github.com/wirkix/arte_y_esencia",
     demo: "https://arteyesencia-zeta.vercel.app/",
     featured: true,
+    livePreview: true,
   },
   {
     id: 2,
@@ -84,9 +86,13 @@ export default function Portfolio() {
           <div className="mb-16">
             {projects.filter(p => p.featured).map(project => (
               <article key={project.id} className="grid md:grid-cols-2 gap-8 items-center">
-                <div className="w-full aspect-video bg-brand-200 rounded-xl flex items-center justify-center">
-                  <span className="text-brand-500 text-lg">Imagen del proyecto</span>
-                </div>
+                {project.livePreview && project.demo ? (
+                  <LivePreview src={project.demo} title={`Vista previa en vivo de ${project.title}`} />
+                ) : (
+                  <div className="w-full aspect-video bg-brand-200 rounded-xl flex items-center justify-center">
+                    <span className="text-brand-500 text-lg">Imagen del proyecto</span>
+                  </div>
+                )}
                 <div>
                   <span className="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-sm font-medium mb-3 inline-block">
                     Proyecto Destacado
@@ -132,9 +138,15 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.filter(p => !p.featured).map(project => (
               <article key={project.id} className="bg-white/5 rounded-xl p-6 hover:shadow-lg transition-shadow">
-                <div className="w-full aspect-video bg-brand-200 rounded-lg mb-4 flex items-center justify-center">
-                  <span className="text-brand-500 text-sm">Imagen del proyecto</span>
-                </div>
+                {project.livePreview && project.demo ? (
+                  <div className="mb-4">
+                    <LivePreview src={project.demo} title={`Vista previa en vivo de ${project.title}`} />
+                  </div>
+                ) : (
+                  <div className="w-full aspect-video bg-brand-200 rounded-lg mb-4 flex items-center justify-center">
+                    <span className="text-brand-500 text-sm">Imagen del proyecto</span>
+                  </div>
+                )}
                 <h3 className="text-lg font-semibold text-brand-800 mb-2">{project.title}</h3>
                 <p className="text-brand-600 text-sm mb-4 line-clamp-2">{project.description}</p>
                 <div className="flex flex-wrap gap-1 mb-4">
