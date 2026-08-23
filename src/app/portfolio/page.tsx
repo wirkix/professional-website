@@ -21,7 +21,10 @@ const projects = [
     image: "/projects/job-market-radar.jpg",
     github: "https://github.com/wirkix/job-market-radar",
     demo: null,
+    report: "/projects/job-market-radar",
+    pbix: "/files/job-market-radar.pbix",
     featured: false,
+    livePreview: true,
   },
   {
     id: 3,
@@ -96,8 +99,11 @@ export default function Portfolio() {
           <div className="mb-16">
             {projects.filter(p => p.featured).map(project => (
               <article key={project.id} className="grid md:grid-cols-2 gap-8 items-center">
-                {project.livePreview && project.demo ? (
-                  <LivePreview src={project.demo} title={`Vista previa en vivo de ${project.title}`} />
+                {project.livePreview && (project.demo ?? project.report) ? (
+                  <LivePreview
+                    src={(project.demo ?? project.report) as string}
+                    title={`Vista previa en vivo de ${project.title}`}
+                  />
                 ) : (
                   <div className="w-full aspect-video bg-brand-200 rounded-xl flex items-center justify-center">
                     <span className="text-brand-500 text-lg">Imagen del proyecto</span>
@@ -137,6 +143,25 @@ export default function Portfolio() {
                         Demo
                       </a>
                     )}
+                    {project.report && (
+                      <a
+                        href={project.report}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 bg-brand-700 text-brand-50 rounded-lg font-medium hover:bg-brand-800 transition"
+                      >
+                        Ver reporte
+                      </a>
+                    )}
+                    {project.pbix && (
+                      <a
+                        href={project.pbix}
+                        download
+                        className="px-4 py-2 border border-brand-500 text-brand-700 rounded-lg font-medium hover:bg-brand-100 transition"
+                      >
+                        Descargar .pbix
+                      </a>
+                    )}
                   </div>
                 </div>
               </article>
@@ -148,9 +173,12 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.filter(p => !p.featured).map(project => (
               <article key={project.id} className="bg-white/5 rounded-xl p-6 hover:shadow-lg transition-shadow">
-                {project.livePreview && project.demo ? (
+                {project.livePreview && (project.demo ?? project.report) ? (
                   <div className="mb-4">
-                    <LivePreview src={project.demo} title={`Vista previa en vivo de ${project.title}`} />
+                    <LivePreview
+                      src={(project.demo ?? project.report) as string}
+                      title={`Vista previa en vivo de ${project.title}`}
+                    />
                   </div>
                 ) : (
                   <div className="w-full aspect-video bg-brand-200 rounded-lg mb-4 flex items-center justify-center">
@@ -185,6 +213,25 @@ export default function Portfolio() {
                       className="text-sm text-brand-500 hover:text-brand-700 font-medium"
                     >
                       Demo
+                    </a>
+                  )}
+                  {project.report && (
+                    <a
+                      href={project.report}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-brand-500 hover:text-brand-700 font-medium"
+                    >
+                      Ver reporte
+                    </a>
+                  )}
+                  {project.pbix && (
+                    <a
+                      href={project.pbix}
+                      download
+                      className="text-sm text-brand-500 hover:text-brand-700 font-medium"
+                    >
+                      Descargar .pbix
                     </a>
                   )}
                 </div>
