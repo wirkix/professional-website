@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import LivePreview from "@/components/LivePreview";
+import ExpandableText from "@/components/ExpandableText";
 
 const projects = [
   {
@@ -186,8 +187,8 @@ export default function Portfolio() {
                   </div>
                 )}
                 <h3 className="text-lg font-semibold text-brand-800 mb-2">{project.title}</h3>
-                <p className="text-brand-600 text-sm mb-4 line-clamp-2">{project.description}</p>
-                <div className="flex flex-wrap gap-1 mb-4">
+                <ExpandableText text={project.description} className="text-brand-600 text-sm" />
+                <div className="flex flex-wrap gap-1 mb-4 mt-4">
                   {project.technologies.slice(0, 4).map((tech, i) => (
                     <span key={i} className="px-2 py-0.5 bg-brand-100 text-brand-500 rounded text-xs">
                       {tech}
