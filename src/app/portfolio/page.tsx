@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Header from "@/components/Header";
 import LivePreview from "@/components/LivePreview";
 import ExpandableText from "@/components/ExpandableText";
@@ -33,6 +34,14 @@ const projects = [
     description: "Tabla analítica desnormalizada sobre datos de autos usados, pensada para que un asistente de IA la explore directamente vía chat en lenguaje natural",
     technologies: ["Python", "Pandas", "dbt", "DuckDB", "Banxico API", "Claude API", "Streamlit"],
     image: "/projects/motor-analytics.jpg",
+    // Real file, unlike every other project's `image` (see "Known gotchas"
+    // in CLAUDE.md) -- a screenshot of the live app, captured via headless
+    // Chrome with a throwaway incognito profile (no stored login) so it
+    // shows what an actual public visitor sees, not an authenticated-owner
+    // view. hasImage gates rendering it vs. the "Imagen del proyecto"
+    // placeholder -- don't add this flag to another project until its
+    // `image` file actually exists in public/, or it'll render broken.
+    hasImage: true,
     github: "https://github.com/wirkix/motor-analytics",
     // Demo link works fine (verified live) but NOT wrapped in <LivePreview>:
     // Streamlit Community Cloud's own viewer-auth redirect
@@ -113,6 +122,15 @@ export default function Portfolio() {
                     src={(project.demo ?? project.report) as string}
                     title={`Vista previa en vivo de ${project.title}`}
                   />
+                ) : project.hasImage ? (
+                  <div className="relative w-full aspect-video rounded-xl overflow-hidden">
+                    <Image
+                      src={project.image}
+                      alt={`Captura de pantalla de ${project.title}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 ) : (
                   <div className="w-full aspect-video bg-brand-200 rounded-xl flex items-center justify-center">
                     <span className="text-brand-500 text-lg">Imagen del proyecto</span>
@@ -187,6 +205,15 @@ export default function Portfolio() {
                     <LivePreview
                       src={(project.demo ?? project.report) as string}
                       title={`Vista previa en vivo de ${project.title}`}
+                    />
+                  </div>
+                ) : project.hasImage ? (
+                  <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-4">
+                    <Image
+                      src={project.image}
+                      alt={`Captura de pantalla de ${project.title}`}
+                      fill
+                      className="object-cover"
                     />
                   </div>
                 ) : (
