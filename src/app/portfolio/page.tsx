@@ -31,7 +31,7 @@ const projects = [
     id: 3,
     title: "Analítica de Autos Usados (Tabla Ancha)",
     description: "Tabla analítica desnormalizada sobre datos de autos usados, pensada para que un asistente de IA la explore directamente vía chat en lenguaje natural",
-    technologies: ["Python", "dbt", "DuckDB", "Claude API", "Streamlit"],
+    technologies: ["Python", "Pandas", "dbt", "DuckDB", "Banxico API", "Claude API", "Streamlit"],
     image: "/projects/motor-analytics.jpg",
     github: "https://github.com/wirkix/motor-analytics",
     demo: null,
