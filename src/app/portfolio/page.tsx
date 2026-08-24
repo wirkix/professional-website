@@ -34,7 +34,15 @@ const projects = [
     technologies: ["Python", "Pandas", "dbt", "DuckDB", "Banxico API", "Claude API", "Streamlit"],
     image: "/projects/motor-analytics.jpg",
     github: "https://github.com/wirkix/motor-analytics",
-    demo: null,
+    // Demo link works fine (verified live) but NOT wrapped in <LivePreview>:
+    // Streamlit Community Cloud's own viewer-auth redirect
+    // (share.streamlit.io/-/auth/app) 503s when loaded inside a cross-origin
+    // iframe -- third-party-cookie blocking breaks its auth handshake there,
+    // even though the same URL renders fine on direct/top-level navigation.
+    // Confirmed by embedding it locally: the iframe never got past the
+    // redirect. Falls back to the plain "Imagen del proyecto" placeholder,
+    // same as Ecobici below.
+    demo: "https://motor-analytics-naksohgdk2zwoxk5buo2va.streamlit.app/",
     featured: false,
   },
   {
