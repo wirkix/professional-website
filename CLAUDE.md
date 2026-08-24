@@ -146,10 +146,15 @@ fails with no build-time signal.
   image source ever becomes untrusted/user-supplied.
 - `portfolio/page.tsx`'s project list (titles, descriptions, GitHub/demo
   links) is still placeholder data. Each project object also has an `image`
-  field pointing at `/projects/*.jpg`, but those files don't exist in
-  `public/` and the field isn't actually rendered anywhere — cards show a
-  plain "Imagen del proyecto" placeholder `<div>` instead. `page.tsx` and
-  `cv/page.tsx` content is real.
+  field pointing at `/projects/*.jpg` — for most projects those files still
+  don't exist in `public/`, and rendering is gated on a separate `hasImage:
+  true` flag (not just a truthy `image`), so cards without it correctly
+  fall back to the plain "Imagen del proyecto" placeholder `<div>` instead
+  of a broken `<Image>`. motor-analytics is the one exception so far
+  (`public/projects/motor-analytics.jpg`, a real screenshot — see its
+  inline comment for why `livePreview` isn't used there instead). Add
+  `hasImage: true` to another project only once its actual image file
+  exists. `page.tsx` and `cv/page.tsx` content is real.
 - The CV PDF (`public/cv/alois-wirkes-cv.pdf`) is a build artifact of
   `scripts/cv-pdf/cv.template.html`, not source — see "CV PDF" above before
   editing CV content in only one place.
