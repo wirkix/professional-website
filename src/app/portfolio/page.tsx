@@ -31,7 +31,7 @@ const projects = [
   {
     id: 3,
     title: "Analítica de Autos Usados (Tabla Ancha)",
-    description: "Tabla analítica desnormalizada sobre datos de autos usados, pensada para que un asistente de IA la explore directamente vía chat en lenguaje natural",
+    description: "Tabla analítica desnormalizada sobre datos de autos usados, pensada para que un asistente de IA la explore directamente vía chat en lenguaje natural. Nota: Streamlit pone la app a dormir tras 12h sin visitas -- si aparece dormida, haz clic en \"Yes, get this app back up!\" para despertarla (tarda menos de un minuto)",
     technologies: ["Python", "Pandas", "dbt", "DuckDB", "Banxico API", "Claude API", "Streamlit"],
     image: "/projects/motor-analytics.jpg",
     // Real file, unlike every other project's `image` (see "Known gotchas"
@@ -49,8 +49,8 @@ const projects = [
     // iframe -- third-party-cookie blocking breaks its auth handshake there,
     // even though the same URL renders fine on direct/top-level navigation.
     // Confirmed by embedding it locally: the iframe never got past the
-    // redirect. Falls back to the plain "Imagen del proyecto" placeholder,
-    // same as Ecobici below.
+    // redirect. Falls back to the plain "Imagen del proyecto" placeholder
+    // (hasImage above) instead.
     demo: "https://motor-analytics-naksohgdk2zwoxk5buo2va.streamlit.app/",
     featured: false,
   },
