@@ -72,10 +72,16 @@ const projects = [
   {
     id: 5,
     title: "Lakehouse de Indicadores Económicos",
-    description: "Pipeline medallion (bronze/silver/gold) sobre indicadores económicos públicos de México (Banxico, INEGI), con MinIO, PySpark y DuckDB como stack local equivalente a S3/Glue/Athena",
-    technologies: ["Python", "PySpark", "MinIO", "DuckDB", "Tableau"],
+    description: "Pipeline medallion (bronze/silver/gold) sobre indicadores económicos públicos de México (Banxico, INEGI), con MinIO, PySpark y DuckDB como stack local equivalente a S3/Glue/Athena, orquestado con Airflow",
+    technologies: ["Python", "Airflow", "PySpark", "MinIO", "DuckDB", "Tableau"],
     image: "/projects/economic-lakehouse.jpg",
-    github: "https://github.com/wirkix/economic-lakehouse",
+    github: "https://github.com/wirkix/economic-pulse-lakehouse",
+    // No demo yet: the pipeline (extract -> MinIO bronze -> PySpark
+    // silver/gold -> DuckDB -> .hyper extract) is built and verified
+    // end-to-end, but the last step -- publishing the Tableau workbook to
+    // Tableau Public -- is a manual, account-gated step blocked on a
+    // Tableau Public account existing (see the repo's
+    // tableau/REPORT_SPEC.md). Set to the public viz URL once published.
     demo: null,
     featured: false,
   },
