@@ -57,11 +57,16 @@ const projects = [
   {
     id: 4,
     title: "Pulso de Ecobici CDMX",
-    description: "Streaming en tiempo real de la disponibilidad de bicis y anclajes de Ecobici Ciudad de México mediante Kafka, visualizado en un mapa en vivo",
+    description: "Streaming en tiempo real de la disponibilidad de bicis y anclajes de Ecobici Ciudad de México mediante Kafka, visualizado en un mapa en vivo que recomienda las mejores estaciones para tomar o dejar una bici",
     technologies: ["Kafka", "Docker", "TimescaleDB", "Next.js", "Supabase Realtime"],
     image: "/projects/ecobici-pulse.jpg",
     github: "https://github.com/wirkix/ecobici-pulse",
-    demo: null,
+    demo: "https://ecobici-pulse-three.vercel.app/",
+    // Confirmed embeddable: the deployed page sends no X-Frame-Options or
+    // frame-ancestors CSP. Preferred over a static `hasImage` screenshot
+    // here specifically because it's a live map -- a still image of a
+    // "live pulse" project undersells the point of it.
+    livePreview: true,
     featured: false,
   },
   {
