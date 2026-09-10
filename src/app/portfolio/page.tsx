@@ -23,7 +23,7 @@ const projects = [
   {
     id: 2,
     title: "Radar del Mercado Laboral",
-    description: "Scraping de vacantes de ingeniería de datos y análisis para detectar qué habilidades demandan más los empleadores, modelado en un data warehouse clásico (esquema estrella) y enriquecido con IA",
+    description: "Scraping de vacantes remotas de ingeniería de datos publicadas en We Work Remotely, con análisis para detectar qué habilidades demandan más los empleadores, modelado en un data warehouse clásico (esquema estrella) y enriquecido con IA",
     technologies: ["Python", "Airflow", "PostgreSQL", "dbt", "Power BI", "BeautifulSoup", "Docker", "Claude API"],
     image: "/projects/job-market-radar.jpg",
     github: "https://github.com/wirkix/job-market-radar",
@@ -36,7 +36,7 @@ const projects = [
   {
     id: 3,
     title: "Analítica de Autos Usados (Tabla Ancha)",
-    description: "Tabla analítica desnormalizada sobre datos de autos usados, pensada para que un asistente de IA la explore directamente vía chat en lenguaje natural. Nota: Streamlit pone la app a dormir tras 12h sin visitas -- si aparece dormida, haz clic en \"Yes, get this app back up!\" para despertarla (tarda menos de un minuto)",
+    description: "Tabla analítica desnormalizada sobre el dataset de Kaggle \"Craigslist Cars/Trucks Data\" (autos usados listados en Craigslist), pensada para que un asistente de IA la explore directamente vía chat en lenguaje natural. Nota: Streamlit pone la app a dormir tras 12h sin visitas -- si aparece dormida, haz clic en \"Yes, get this app back up!\" para despertarla (tarda menos de un minuto)",
     technologies: ["Python", "Pandas", "dbt", "DuckDB", "Kaggle", "Banxico API", "Claude API", "Streamlit"],
     image: "/projects/motor-analytics.jpg",
     // Real file, unlike every other project's `image` (see "Known gotchas"
@@ -93,6 +93,13 @@ const projects = [
     // when opened directly via the Demo button.
     demo: "https://public.tableau.com/views/EconomicPulse-Mexico/EconomicPulseMxico?:language=es-ES&:showVizHome=no&:embed=y",
     livePreview: true,
+    // Same idea as job-market-radar's pbix download -- the underlying
+    // workbook file, not just the published viz. Its Text File
+    // connections point at this machine's absolute tableau/extract/ path
+    // (see economic-pulse-lakehouse's own tableau/REPORT_SPEC.md "Connect"
+    // section), so anyone opening it will need to repoint those two
+    // connections to their own copy of that repo's CSVs before it renders.
+    twb: "/files/economic-pulse-lakehouse.twb",
     featured: false,
   },
   {
@@ -218,6 +225,15 @@ export default function Portfolio() {
                         Descargar .pbix
                       </a>
                     )}
+                    {project.twb && (
+                      <a
+                        href={project.twb}
+                        download
+                        className="px-4 py-2 border border-brand-500 text-brand-700 rounded-lg font-medium hover:bg-brand-100 transition"
+                      >
+                        Descargar .twb
+                      </a>
+                    )}
                   </div>
                 </div>
               </article>
@@ -291,6 +307,15 @@ export default function Portfolio() {
                       className="text-sm text-brand-500 hover:text-brand-700 font-medium"
                     >
                       Descargar .pbix
+                    </a>
+                  )}
+                  {project.twb && (
+                    <a
+                      href={project.twb}
+                      download
+                      className="text-sm text-brand-500 hover:text-brand-700 font-medium"
+                    >
+                      Descargar .twb
                     </a>
                   )}
                 </div>
