@@ -62,7 +62,7 @@ const projects = [
   {
     id: 4,
     title: "Pulso de Ecobici CDMX",
-    description: "Streaming en tiempo real de la disponibilidad de bicis y anclajes de Ecobici Ciudad de México mediante Kafka, visualizado en un mapa en vivo que recomienda las mejores estaciones para tomar o dejar una bici",
+    description: "Streaming en tiempo real de la disponibilidad de bicis y anclajes de Ecobici Ciudad de México mediante Kafka, visualizado en un mapa en vivo con estaciones coloreadas según su nivel de ocupación",
     technologies: ["Kafka", "Docker", "TimescaleDB", "Next.js", "Python", "GBFS API", "React", "TypeScript", "Tailwind CSS", "MapLibre GL", "Supabase Realtime", "Oracle Cloud", "Vercel"],
     image: "/projects/ecobici-pulse.jpg",
     github: "https://github.com/wirkix/ecobici-pulse",
@@ -108,7 +108,11 @@ const projects = [
     description: "Warehouse moderno en Databricks Community Edition con modelos dbt probados y documentados, desplegado mediante un pipeline de integración continua en GitHub Actions",
     technologies: ["dbt", "Databricks", "GitHub Actions", "Metabase"],
     image: "/projects/elt-warehouse-ci.jpg",
-    github: "https://github.com/wirkix/elt-warehouse-ci",
+    // No repo yet -- github.com/wirkix/elt-warehouse-ci doesn't exist
+    // (confirmed via `gh repo view`: 404). Roadmap card, not a published
+    // project; leave github null until the repo is real, or the "Código"
+    // button would link to a 404.
+    github: null,
     demo: null,
     featured: false,
   },
@@ -118,7 +122,9 @@ const projects = [
     description: "Ingeniería de características y pronóstico de series de tiempo sobre datos generados por otros proyectos del portafolio, publicado como reporte reproducible en notebooks",
     technologies: ["Jupyter", "scikit-learn", "Prophet", "SQL Server", "Plotly"],
     image: "/projects/demand-forecasting.jpg",
-    github: "https://github.com/wirkix/demand-forecasting",
+    // Same as elt-warehouse-ci above -- github.com/wirkix/demand-forecasting
+    // doesn't exist yet either (confirmed via `gh repo view`: 404).
+    github: null,
     demo: null,
     featured: false,
   },
@@ -235,6 +241,12 @@ export default function Portfolio() {
                       </a>
                     )}
                   </div>
+                  {project.twb && (
+                    <p className="text-sm text-brand-500 mt-2">
+                      Nota: el archivo usa conexiones locales -- al abrirlo en Tableau Desktop
+                      tendrás que reconectarlas a tu propia copia del repositorio.
+                    </p>
+                  )}
                 </div>
               </article>
             ))}
@@ -319,6 +331,12 @@ export default function Portfolio() {
                     </a>
                   )}
                 </div>
+                {project.twb && (
+                  <p className="text-xs text-brand-500 mt-2">
+                    Nota: usa conexiones locales -- reconéctalas a tu propia copia del
+                    repositorio al abrirlo en Tableau Desktop.
+                  </p>
+                )}
               </article>
             ))}
           </div>
