@@ -8,7 +8,17 @@ import { useEffect, useRef, useState } from "react";
  * Descriptions short enough to already fit in 2 lines render with no
  * button at all, so the toggle never appears as dead UI.
  */
-export default function ExpandableText({ text, className = "" }: { text: string; className?: string }) {
+export default function ExpandableText({
+  text,
+  className = "",
+  showMoreLabel = "Mostrar más",
+  showLessLabel = "Mostrar menos",
+}: {
+  text: string;
+  className?: string;
+  showMoreLabel?: string;
+  showLessLabel?: string;
+}) {
   const ref = useRef<HTMLParagraphElement>(null);
   const [expanded, setExpanded] = useState(false);
   const [overflows, setOverflows] = useState(false);
@@ -36,7 +46,7 @@ export default function ExpandableText({ text, className = "" }: { text: string;
           onClick={() => setExpanded((v) => !v)}
           className="text-xs text-brand-500 hover:text-brand-700 font-medium mt-1"
         >
-          {expanded ? "Mostrar menos" : "Mostrar más"}
+          {expanded ? showLessLabel : showMoreLabel}
         </button>
       )}
     </div>
