@@ -17,11 +17,22 @@ export default function TechTags({
   initialCount = 4,
   pillClassName = "px-2 py-0.5 bg-brand-100 text-brand-500 rounded text-xs",
   className = "flex flex-wrap gap-1",
+  // Plain strings, not a (n: number) => string function -- this is a "use
+  // client" component, and functions can't cross the Server->Client
+  // Component prop boundary (Next.js throws at render: "Functions cannot
+  // be passed directly to Client Components"). The hidden count is
+  // knowable by the caller (technologies.length - initialCount, both
+  // already in its hands), so it formats the final string itself instead
+  // of handing this component a formatter to call.
+  showMoreAriaLabel = "Show more technologies",
+  showLessAriaLabel = "Show fewer technologies",
 }: {
   technologies: string[];
   initialCount?: number;
   pillClassName?: string;
   className?: string;
+  showMoreAriaLabel?: string;
+  showLessAriaLabel?: string;
 }) {
   const [expanded, setExpanded] = useState(false);
   const hiddenCount = technologies.length - initialCount;
@@ -39,7 +50,7 @@ export default function TechTags({
           type="button"
           onClick={() => setExpanded((v) => !v)}
           className={`${pillClassName} hover:bg-brand-200 transition cursor-pointer font-medium`}
-          aria-label={expanded ? "Mostrar menos tecnologías" : `Mostrar ${hiddenCount} tecnologías más`}
+          aria-label={expanded ? showLessAriaLabel : showMoreAriaLabel}
         >
           {expanded ? "−" : `+${hiddenCount}`}
         </button>

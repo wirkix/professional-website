@@ -3,12 +3,15 @@ import Header from "@/components/Header";
 import LivePreview from "@/components/LivePreview";
 import ExpandableText from "@/components/ExpandableText";
 import TechTags from "@/components/TechTags";
+import { getDictionary } from "@/lib/i18n";
 
+// Everything here is locale-invariant metadata (links, flags, tech names --
+// tech/tool names are proper nouns, identical in both languages). Title and
+// description text live in the i18n dictionary instead, keyed by `id`, so
+// this array doesn't need a Spanish/English copy of itself.
 const projects = [
   {
-    id: 1,
-    title: "Arte y Esencia",
-    description: "Sistema web para gestionar inventario, pedidos y catálogo de un emprendimiento: catálogo público con búsqueda y filtros, panel admin con control de insumos, recetas de producto e inventario auditable por movimientos",
+    id: 1 as const,
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "PostgreSQL", "Vercel"],
     image: "/projects/arte-y-esencia.jpg",
     github: "https://github.com/wirkix/arte_y_esencia",
@@ -21,9 +24,7 @@ const projects = [
     inProgress: true,
   },
   {
-    id: 2,
-    title: "Radar del Mercado Laboral",
-    description: "Scraping de vacantes remotas de ingeniería de datos publicadas en We Work Remotely, con análisis para detectar qué habilidades demandan más los empleadores, modelado en un data warehouse clásico (esquema estrella) y enriquecido con IA",
+    id: 2 as const,
     technologies: ["Python", "Airflow", "PostgreSQL", "dbt", "Power BI", "BeautifulSoup", "Docker", "Claude API"],
     image: "/projects/job-market-radar.jpg",
     github: "https://github.com/wirkix/job-market-radar",
@@ -34,9 +35,7 @@ const projects = [
     livePreview: true,
   },
   {
-    id: 3,
-    title: "Analítica de Autos Usados (Tabla Ancha)",
-    description: "Tabla analítica desnormalizada sobre el dataset de Kaggle \"Craigslist Cars/Trucks Data\" (autos usados listados en Craigslist), pensada para que un asistente de IA la explore directamente vía chat en lenguaje natural. Nota: Streamlit pone la app a dormir tras 12h sin visitas -- si aparece dormida, haz clic en \"Yes, get this app back up!\" para despertarla (tarda menos de un minuto)",
+    id: 3 as const,
     technologies: ["Python", "Pandas", "dbt", "DuckDB", "Kaggle", "Banxico API", "Claude API", "Streamlit"],
     image: "/projects/motor-analytics.jpg",
     // Real file, unlike every other project's `image` (see "Known gotchas"
@@ -60,9 +59,7 @@ const projects = [
     featured: false,
   },
   {
-    id: 4,
-    title: "Pulso de Ecobici CDMX",
-    description: "Streaming en tiempo real de la disponibilidad de bicis y anclajes de Ecobici Ciudad de México mediante Kafka, visualizado en un mapa en vivo con estaciones coloreadas según su nivel de ocupación",
+    id: 4 as const,
     technologies: ["Kafka", "Docker", "TimescaleDB", "Next.js", "Python", "GBFS API", "React", "TypeScript", "Tailwind CSS", "MapLibre GL", "Supabase Realtime", "Oracle Cloud", "Vercel"],
     image: "/projects/ecobici-pulse.jpg",
     github: "https://github.com/wirkix/ecobici-pulse",
@@ -75,9 +72,7 @@ const projects = [
     featured: false,
   },
   {
-    id: 5,
-    title: "Lakehouse de Indicadores Económicos",
-    description: "Pipeline medallion (bronze/silver/gold) sobre indicadores económicos públicos de México (Banxico, INEGI), con MinIO, PySpark y DuckDB como stack local equivalente a S3/Glue/Athena, orquestado con Airflow",
+    id: 5 as const,
     technologies: ["Python", "Airflow", "PySpark", "MinIO", "Docker", "DuckDB", "Banxico API", "INEGI API", "Tableau"],
     image: "/projects/economic-lakehouse.jpg",
     github: "https://github.com/wirkix/economic-pulse-lakehouse",
@@ -103,9 +98,7 @@ const projects = [
     featured: false,
   },
   {
-    id: 6,
-    title: "Warehouse ELT con Integración Continua",
-    description: "Warehouse moderno en Databricks Community Edition con modelos dbt probados y documentados, desplegado mediante un pipeline de integración continua en GitHub Actions",
+    id: 6 as const,
     technologies: ["dbt", "Databricks", "GitHub Actions", "Metabase"],
     image: "/projects/elt-warehouse-ci.jpg",
     // No repo yet -- github.com/wirkix/elt-warehouse-ci doesn't exist
@@ -117,9 +110,7 @@ const projects = [
     featured: false,
   },
   {
-    id: 7,
-    title: "Laboratorio de Pronóstico de Demanda",
-    description: "Ingeniería de características y pronóstico de series de tiempo sobre datos generados por otros proyectos del portafolio, publicado como reporte reproducible en notebooks",
+    id: 7 as const,
     technologies: ["Jupyter", "scikit-learn", "Prophet", "SQL Server", "Plotly"],
     image: "/projects/demand-forecasting.jpg",
     // Same as elt-warehouse-ci above -- github.com/wirkix/demand-forecasting
@@ -130,7 +121,10 @@ const projects = [
   },
 ];
 
-export default function Portfolio() {
+export default async function Portfolio() {
+  const { t } = await getDictionary();
+  const p = t.portfolio;
+
   return (
     <div className="min-h-screen bg-brand-50 text-brand-950">
       <Header />
@@ -139,51 +133,51 @@ export default function Portfolio() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-3xl md:text-4xl font-bold text-brand-900 mb-4">
-              Portafolio de Proyectos
+              {p.pageTitle}
             </h1>
             <p className="text-brand-600 max-w-2xl mx-auto">
-              Selección de proyectos destacados que demuestran experiencia en ingeniería
-              de datos, arquitectura de data warehouses y Business Intelligence,
-              construidos con distintas tecnologías según las necesidades de cada proyecto.
+              {p.summary}
             </p>
           </div>
 
           {/* Featured Project */}
           <div className="mb-16">
-            {projects.filter(p => p.featured).map(project => (
+            {projects.filter(project => project.featured).map(project => {
+              const copy = p.projects[project.id];
+              return (
               <article key={project.id} className="grid md:grid-cols-2 gap-8 items-center">
                 {project.livePreview && (project.demo ?? project.report) ? (
                   <LivePreview
                     src={(project.demo ?? project.report) as string}
-                    title={`Vista previa en vivo de ${project.title}`}
+                    title={p.livePreviewAlt(copy.title)}
                   />
                 ) : project.hasImage ? (
                   <div className="relative w-full aspect-video rounded-xl overflow-hidden">
                     <Image
                       src={project.image}
-                      alt={`Captura de pantalla de ${project.title}`}
+                      alt={copy.title}
                       fill
                       className="object-cover"
                     />
                   </div>
                 ) : (
                   <div className="w-full aspect-video bg-brand-200 rounded-xl flex items-center justify-center">
-                    <span className="text-brand-500 text-lg">Imagen del proyecto</span>
+                    <span className="text-brand-500 text-lg">{p.imagePlaceholder}</span>
                   </div>
                 )}
                 <div>
                   <div className="flex flex-wrap gap-2 mb-3">
                     <span className="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-sm font-medium inline-block">
-                      Proyecto Destacado
+                      {p.featuredBadge}
                     </span>
                     {project.inProgress && (
                       <span className="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium inline-block">
-                        En Desarrollo
+                        {p.inProgressBadge}
                       </span>
                     )}
                   </div>
-                  <h2 className="text-2xl font-bold text-brand-800 mb-3">{project.title}</h2>
-                  <p className="text-brand-700 mb-6">{project.description}</p>
+                  <h2 className="text-2xl font-bold text-brand-800 mb-3">{copy.title}</h2>
+                  <p className="text-brand-700 mb-6">{copy.description}</p>
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.technologies.map((tech, i) => (
                       <span key={i} className="px-2 py-1 bg-brand-100 text-brand-600 rounded text-sm">
@@ -199,7 +193,7 @@ export default function Portfolio() {
                         rel="noopener noreferrer"
                         className="px-4 py-2 border border-brand-500 text-brand-700 rounded-lg font-medium hover:bg-brand-100 transition"
                       >
-                        Código
+                        {p.codeButton}
                       </a>
                     )}
                     {project.demo && (
@@ -209,7 +203,7 @@ export default function Portfolio() {
                         rel="noopener noreferrer"
                         className="px-4 py-2 bg-brand-700 text-brand-50 rounded-lg font-medium hover:bg-brand-800 transition"
                       >
-                        Demo
+                        {p.demoButton}
                       </a>
                     )}
                     {project.report && (
@@ -219,7 +213,7 @@ export default function Portfolio() {
                         rel="noopener noreferrer"
                         className="px-4 py-2 bg-brand-700 text-brand-50 rounded-lg font-medium hover:bg-brand-800 transition"
                       >
-                        Ver reporte
+                        {p.reportButton}
                       </a>
                     )}
                     {project.pbix && (
@@ -228,7 +222,7 @@ export default function Portfolio() {
                         download
                         className="px-4 py-2 border border-brand-500 text-brand-700 rounded-lg font-medium hover:bg-brand-100 transition"
                       >
-                        Descargar .pbix
+                        {p.pbixButton}
                       </a>
                     )}
                     {project.twb && (
@@ -237,50 +231,63 @@ export default function Portfolio() {
                         download
                         className="px-4 py-2 border border-brand-500 text-brand-700 rounded-lg font-medium hover:bg-brand-100 transition"
                       >
-                        Descargar .twb
+                        {p.twbButton}
                       </a>
                     )}
                   </div>
                   {project.twb && (
                     <p className="text-sm text-brand-500 mt-2">
-                      Nota: el archivo usa conexiones locales -- al abrirlo en Tableau Desktop
-                      tendrás que reconectarlas a tu propia copia del repositorio.
+                      {p.twbNote}
                     </p>
                   )}
                 </div>
               </article>
-            ))}
+              );
+            })}
           </div>
 
           {/* Other Projects */}
-          <h2 className="text-2xl font-semibold text-brand-700 mb-8">Otros Proyectos</h2>
+          <h2 className="text-2xl font-semibold text-brand-700 mb-8">{p.otherProjectsHeading}</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.filter(p => !p.featured).map(project => (
+            {projects.filter(project => !project.featured).map(project => {
+              const copy = p.projects[project.id];
+              return (
               <article key={project.id} className="bg-white/5 rounded-xl p-6 hover:shadow-lg transition-shadow">
                 {project.livePreview && (project.demo ?? project.report) ? (
                   <div className="mb-4">
                     <LivePreview
                       src={(project.demo ?? project.report) as string}
-                      title={`Vista previa en vivo de ${project.title}`}
+                      title={p.livePreviewAlt(copy.title)}
                     />
                   </div>
                 ) : project.hasImage ? (
                   <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-4">
                     <Image
                       src={project.image}
-                      alt={`Captura de pantalla de ${project.title}`}
+                      alt={copy.title}
                       fill
                       className="object-cover"
                     />
                   </div>
                 ) : (
                   <div className="w-full aspect-video bg-brand-200 rounded-lg mb-4 flex items-center justify-center">
-                    <span className="text-brand-500 text-sm">Imagen del proyecto</span>
+                    <span className="text-brand-500 text-sm">{p.imagePlaceholder}</span>
                   </div>
                 )}
-                <h3 className="text-lg font-semibold text-brand-800 mb-2">{project.title}</h3>
-                <ExpandableText text={project.description} className="text-brand-600 text-sm" />
-                <TechTags technologies={project.technologies} className="flex flex-wrap gap-1 mb-4 mt-4" />
+                <h3 className="text-lg font-semibold text-brand-800 mb-2">{copy.title}</h3>
+                <ExpandableText
+                  text={copy.description}
+                  className="text-brand-600 text-sm"
+                  showMoreLabel={t.expandableText.showMore}
+                  showLessLabel={t.expandableText.showLess}
+                />
+                <TechTags
+                  technologies={project.technologies}
+                  initialCount={4}
+                  className="flex flex-wrap gap-1 mb-4 mt-4"
+                  showMoreAriaLabel={t.techTags.showMoreAria(project.technologies.length - 4)}
+                  showLessAriaLabel={t.techTags.showLessAria}
+                />
                 <div className="flex gap-3">
                   {project.github && (
                     <a
@@ -289,7 +296,7 @@ export default function Portfolio() {
                       rel="noopener noreferrer"
                       className="text-sm text-brand-500 hover:text-brand-700 font-medium"
                     >
-                      Código
+                      {p.codeButton}
                     </a>
                   )}
                   {project.demo && (
@@ -299,7 +306,7 @@ export default function Portfolio() {
                       rel="noopener noreferrer"
                       className="text-sm text-brand-500 hover:text-brand-700 font-medium"
                     >
-                      Demo
+                      {p.demoButton}
                     </a>
                   )}
                   {project.report && (
@@ -309,7 +316,7 @@ export default function Portfolio() {
                       rel="noopener noreferrer"
                       className="text-sm text-brand-500 hover:text-brand-700 font-medium"
                     >
-                      Ver reporte
+                      {p.reportButton}
                     </a>
                   )}
                   {project.pbix && (
@@ -318,7 +325,7 @@ export default function Portfolio() {
                       download
                       className="text-sm text-brand-500 hover:text-brand-700 font-medium"
                     >
-                      Descargar .pbix
+                      {p.pbixButton}
                     </a>
                   )}
                   {project.twb && (
@@ -327,18 +334,18 @@ export default function Portfolio() {
                       download
                       className="text-sm text-brand-500 hover:text-brand-700 font-medium"
                     >
-                      Descargar .twb
+                      {p.twbButton}
                     </a>
                   )}
                 </div>
                 {project.twb && (
                   <p className="text-xs text-brand-500 mt-2">
-                    Nota: usa conexiones locales -- reconéctalas a tu propia copia del
-                    repositorio al abrirlo en Tableau Desktop.
+                    {p.twbNote}
                   </p>
                 )}
               </article>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
