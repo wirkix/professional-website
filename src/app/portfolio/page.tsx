@@ -15,11 +15,15 @@ const projects = [
     demo: "https://arteyesencia-zeta.vercel.app/",
     featured: true,
     livePreview: true,
+    // Still actively being built (inventory/orders flow is real and live,
+    // but not everything planned for it is done) -- not "finished and
+    // demoing" like the site's other featured-style badges imply.
+    inProgress: true,
   },
   {
     id: 2,
     title: "Radar del Mercado Laboral",
-    description: "Scraping de vacantes de ingeniería de datos y análisis para detectar qué habilidades demandan más los empleadores, modelado en un data warehouse clásico (esquema estrella) y enriquecido con IA",
+    description: "Scraping de vacantes remotas de ingeniería de datos publicadas en We Work Remotely, con análisis para detectar qué habilidades demandan más los empleadores, modelado en un data warehouse clásico (esquema estrella) y enriquecido con IA",
     technologies: ["Python", "Airflow", "PostgreSQL", "dbt", "Power BI", "BeautifulSoup", "Docker", "Claude API"],
     image: "/projects/job-market-radar.jpg",
     github: "https://github.com/wirkix/job-market-radar",
@@ -32,7 +36,7 @@ const projects = [
   {
     id: 3,
     title: "Analítica de Autos Usados (Tabla Ancha)",
-    description: "Tabla analítica desnormalizada sobre datos de autos usados, pensada para que un asistente de IA la explore directamente vía chat en lenguaje natural. Nota: Streamlit pone la app a dormir tras 12h sin visitas -- si aparece dormida, haz clic en \"Yes, get this app back up!\" para despertarla (tarda menos de un minuto)",
+    description: "Tabla analítica desnormalizada sobre el dataset de Kaggle \"Craigslist Cars/Trucks Data\" (autos usados listados en Craigslist), pensada para que un asistente de IA la explore directamente vía chat en lenguaje natural. Nota: Streamlit pone la app a dormir tras 12h sin visitas -- si aparece dormida, haz clic en \"Yes, get this app back up!\" para despertarla (tarda menos de un minuto)",
     technologies: ["Python", "Pandas", "dbt", "DuckDB", "Kaggle", "Banxico API", "Claude API", "Streamlit"],
     image: "/projects/motor-analytics.jpg",
     // Real file, unlike every other project's `image` (see "Known gotchas"
@@ -58,7 +62,7 @@ const projects = [
   {
     id: 4,
     title: "Pulso de Ecobici CDMX",
-    description: "Streaming en tiempo real de la disponibilidad de bicis y anclajes de Ecobici Ciudad de México mediante Kafka, visualizado en un mapa en vivo que recomienda las mejores estaciones para tomar o dejar una bici",
+    description: "Streaming en tiempo real de la disponibilidad de bicis y anclajes de Ecobici Ciudad de México mediante Kafka, visualizado en un mapa en vivo con estaciones coloreadas según su nivel de ocupación",
     technologies: ["Kafka", "Docker", "TimescaleDB", "Next.js", "Python", "GBFS API", "React", "TypeScript", "Tailwind CSS", "MapLibre GL", "Supabase Realtime", "Oracle Cloud", "Vercel"],
     image: "/projects/ecobici-pulse.jpg",
     github: "https://github.com/wirkix/ecobici-pulse",
@@ -89,6 +93,13 @@ const projects = [
     // when opened directly via the Demo button.
     demo: "https://public.tableau.com/views/EconomicPulse-Mexico/EconomicPulseMxico?:language=es-ES&:showVizHome=no&:embed=y",
     livePreview: true,
+    // Same idea as job-market-radar's pbix download -- the underlying
+    // workbook file, not just the published viz. Its Text File
+    // connections point at this machine's absolute tableau/extract/ path
+    // (see economic-pulse-lakehouse's own tableau/REPORT_SPEC.md "Connect"
+    // section), so anyone opening it will need to repoint those two
+    // connections to their own copy of that repo's CSVs before it renders.
+    twb: "/files/economic-pulse-lakehouse.twb",
     featured: false,
   },
   {
@@ -97,7 +108,11 @@ const projects = [
     description: "Warehouse moderno en Databricks Community Edition con modelos dbt probados y documentados, desplegado mediante un pipeline de integración continua en GitHub Actions",
     technologies: ["dbt", "Databricks", "GitHub Actions", "Metabase"],
     image: "/projects/elt-warehouse-ci.jpg",
-    github: "https://github.com/wirkix/elt-warehouse-ci",
+    // No repo yet -- github.com/wirkix/elt-warehouse-ci doesn't exist
+    // (confirmed via `gh repo view`: 404). Roadmap card, not a published
+    // project; leave github null until the repo is real, or the "Código"
+    // button would link to a 404.
+    github: null,
     demo: null,
     featured: false,
   },
@@ -107,7 +122,9 @@ const projects = [
     description: "Ingeniería de características y pronóstico de series de tiempo sobre datos generados por otros proyectos del portafolio, publicado como reporte reproducible en notebooks",
     technologies: ["Jupyter", "scikit-learn", "Prophet", "SQL Server", "Plotly"],
     image: "/projects/demand-forecasting.jpg",
-    github: "https://github.com/wirkix/demand-forecasting",
+    // Same as elt-warehouse-ci above -- github.com/wirkix/demand-forecasting
+    // doesn't exist yet either (confirmed via `gh repo view`: 404).
+    github: null,
     demo: null,
     featured: false,
   },
@@ -125,8 +142,9 @@ export default function Portfolio() {
               Portafolio de Proyectos
             </h1>
             <p className="text-brand-600 max-w-2xl mx-auto">
-              Selección de proyectos destacados que demuestran experiencia en desarrollo
-              full-stack, arquitectura de sistemas y diseño de productos digitales.
+              Selección de proyectos destacados que demuestran experiencia en ingeniería
+              de datos, arquitectura de data warehouses y Business Intelligence,
+              construidos con distintas tecnologías según las necesidades de cada proyecto.
             </p>
           </div>
 
@@ -154,9 +172,16 @@ export default function Portfolio() {
                   </div>
                 )}
                 <div>
-                  <span className="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-sm font-medium mb-3 inline-block">
-                    Proyecto Destacado
-                  </span>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-sm font-medium inline-block">
+                      Proyecto Destacado
+                    </span>
+                    {project.inProgress && (
+                      <span className="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium inline-block">
+                        En Desarrollo
+                      </span>
+                    )}
+                  </div>
                   <h2 className="text-2xl font-bold text-brand-800 mb-3">{project.title}</h2>
                   <p className="text-brand-700 mb-6">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-6">
@@ -206,7 +231,22 @@ export default function Portfolio() {
                         Descargar .pbix
                       </a>
                     )}
+                    {project.twb && (
+                      <a
+                        href={project.twb}
+                        download
+                        className="px-4 py-2 border border-brand-500 text-brand-700 rounded-lg font-medium hover:bg-brand-100 transition"
+                      >
+                        Descargar .twb
+                      </a>
+                    )}
                   </div>
+                  {project.twb && (
+                    <p className="text-sm text-brand-500 mt-2">
+                      Nota: el archivo usa conexiones locales -- al abrirlo en Tableau Desktop
+                      tendrás que reconectarlas a tu propia copia del repositorio.
+                    </p>
+                  )}
                 </div>
               </article>
             ))}
@@ -281,7 +321,22 @@ export default function Portfolio() {
                       Descargar .pbix
                     </a>
                   )}
+                  {project.twb && (
+                    <a
+                      href={project.twb}
+                      download
+                      className="text-sm text-brand-500 hover:text-brand-700 font-medium"
+                    >
+                      Descargar .twb
+                    </a>
+                  )}
                 </div>
+                {project.twb && (
+                  <p className="text-xs text-brand-500 mt-2">
+                    Nota: usa conexiones locales -- reconéctalas a tu propia copia del
+                    repositorio al abrirlo en Tableau Desktop.
+                  </p>
+                )}
               </article>
             ))}
           </div>
