@@ -76,13 +76,18 @@ const projects = [
     technologies: ["Python", "Airflow", "PySpark", "MinIO", "DuckDB", "Tableau"],
     image: "/projects/economic-lakehouse.jpg",
     github: "https://github.com/wirkix/economic-pulse-lakehouse",
-    // No demo yet: the pipeline (extract -> MinIO bronze -> PySpark
-    // silver/gold -> DuckDB -> .hyper extract) is built and verified
-    // end-to-end, but the last step -- publishing the Tableau workbook to
-    // Tableau Public -- is a manual, account-gated step blocked on a
-    // Tableau Public account existing (see the repo's
-    // tableau/REPORT_SPEC.md). Set to the public viz URL once published.
-    demo: null,
+    // Published to Tableau Public. Deliberately NOT the plain share link
+    // (public.tableau.com/views/.../EconomicPulseMxico?:language=es-ES&...
+    // &:redirect=auth) copied from the "Share" button -- that one 302s to
+    // the app/profile/.../viz/... page, which sends X-Frame-Options:
+    // SAMEORIGIN and can't be embedded (confirmed via curl -I). The
+    // `?:embed=y` viz URL below is the one Tableau's own embed snippet's
+    // <object> loads under the hood; it 200s with no X-Frame-Options/CSP
+    // frame-ancestors (confirmed via curl -I), so it works directly as an
+    // <iframe src> and is still a fully interactive standalone dashboard
+    // when opened directly via the Demo button.
+    demo: "https://public.tableau.com/views/EconomicPulse-Mexico/EconomicPulseMxico?:language=es-ES&:showVizHome=no&:embed=y",
+    livePreview: true,
     featured: false,
   },
   {
