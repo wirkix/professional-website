@@ -15,6 +15,10 @@ const projects = [
     demo: "https://arteyesencia-zeta.vercel.app/",
     featured: true,
     livePreview: true,
+    // Still actively being built (inventory/orders flow is real and live,
+    // but not everything planned for it is done) -- not "finished and
+    // demoing" like the site's other featured-style badges imply.
+    inProgress: true,
   },
   {
     id: 2,
@@ -125,8 +129,9 @@ export default function Portfolio() {
               Portafolio de Proyectos
             </h1>
             <p className="text-brand-600 max-w-2xl mx-auto">
-              Selección de proyectos destacados que demuestran experiencia en desarrollo
-              full-stack, arquitectura de sistemas y diseño de productos digitales.
+              Selección de proyectos destacados que demuestran experiencia en ingeniería
+              de datos, arquitectura de data warehouses y Business Intelligence,
+              construidos con distintas tecnologías según las necesidades de cada proyecto.
             </p>
           </div>
 
@@ -154,9 +159,16 @@ export default function Portfolio() {
                   </div>
                 )}
                 <div>
-                  <span className="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-sm font-medium mb-3 inline-block">
-                    Proyecto Destacado
-                  </span>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-sm font-medium inline-block">
+                      Proyecto Destacado
+                    </span>
+                    {project.inProgress && (
+                      <span className="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium inline-block">
+                        En Desarrollo
+                      </span>
+                    )}
+                  </div>
                   <h2 className="text-2xl font-bold text-brand-800 mb-3">{project.title}</h2>
                   <p className="text-brand-700 mb-6">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-6">
