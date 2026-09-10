@@ -1,12 +1,16 @@
 #!/usr/bin/env node
 /**
- * Regenerates public/cv/alois-wirkes-cv.pdf from scripts/cv-pdf/cv.template.html
- * by rendering the template in headless Chrome/Edge and printing it to PDF.
+ * Regenerates public/cv/alois-wirkes-cv.pdf and public/cv/alois-wirkes-cv-en.pdf
+ * from scripts/cv-pdf/cv.template.html and cv.template.en.html by rendering
+ * each in headless Chrome/Edge and printing it to PDF.
  *
- * The template has no build step of its own — it's a hand-authored, self-contained
- * HTML/CSS resume styled to match the original 2020 CV design. Edit the template
- * directly (in step with src/app/cv/page.tsx) and re-run this script to publish
- * the update.
+ * Neither template has a build step of its own — both are hand-authored,
+ * self-contained HTML/CSS résumés styled to match the original 2020 CV
+ * design (the English one is a translation of the same document, not a
+ * re-derivation from src/app/cv/page.tsx's dictionary text -- the two
+ * already diverge slightly in wording/bullet grouping, which predates this
+ * script). Edit both templates in step with each other and with
+ * src/app/cv/page.tsx, then re-run this script to publish the update.
  *
  * Usage: npm run cv:pdf
  */
@@ -19,9 +23,12 @@ import { spawnSync } from "node:child_process";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, "..", "..");
 
-const templatePath = join(__dirname, "cv.template.html");
 const photoPath = join(repoRoot, "public", "images", "alois-wirkes.jpg");
-const outputPath = join(repoRoot, "public", "cv", "alois-wirkes-cv.pdf");
+
+const targets = [
+  { templatePath: join(__dirname, "cv.template.html"), outputPath: join(repoRoot, "public", "cv", "alois-wirkes-cv.pdf") },
+  { templatePath: join(__dirname, "cv.template.en.html"), outputPath: join(repoRoot, "public", "cv", "alois-wirkes-cv-en.pdf") },
+];
 
 // Known headless-capable Chromium browser locations, checked in order.
 // Override with the CV_PDF_BROWSER env var if none of these match.
@@ -51,31 +58,33 @@ if (!existsSync(photoPath)) {
   process.exit(1);
 }
 
-const template = readFileSync(templatePath, "utf8");
-const rendered = template.replace("{{PHOTO_SRC}}", pathToFileURL(photoPath).href);
+for (const { templatePath, outputPath } of targets) {
+  const template = readFileSync(templatePath, "utf8");
+  const rendered = template.replace("{{PHOTO_SRC}}", pathToFileURL(photoPath).href);
 
-const tmpDir = mkdtempSync(join(tmpdir(), "cv-pdf-"));
-const tmpHtmlPath = join(tmpDir, "cv.html");
-writeFileSync(tmpHtmlPath, rendered, "utf8");
+  const tmpDir = mkdtempSync(join(tmpdir(), "cv-pdf-"));
+  const tmpHtmlPath = join(tmpDir, "cv.html");
+  writeFileSync(tmpHtmlPath, rendered, "utf8");
 
-console.log(`Rendering CV with ${browser} ...`);
-const result = spawnSync(
-  browser,
-  [
-    "--headless",
-    "--disable-gpu",
-    "--no-pdf-header-footer",
-    `--print-to-pdf=${outputPath}`,
-    pathToFileURL(tmpHtmlPath).href,
-  ],
-  { stdio: "inherit" }
-);
+  console.log(`Rendering ${templatePath} with ${browser} ...`);
+  const result = spawnSync(
+    browser,
+    [
+      "--headless",
+      "--disable-gpu",
+      "--no-pdf-header-footer",
+      `--print-to-pdf=${outputPath}`,
+      pathToFileURL(tmpHtmlPath).href,
+    ],
+    { stdio: "inherit" }
+  );
 
-rmSync(tmpDir, { recursive: true, force: true });
+  rmSync(tmpDir, { recursive: true, force: true });
 
-if (result.status !== 0) {
-  console.error("PDF generation failed.");
-  process.exit(result.status ?? 1);
+  if (result.status !== 0) {
+    console.error(`PDF generation failed for ${templatePath}.`);
+    process.exit(result.status ?? 1);
+  }
+
+  console.log(`CV PDF written to ${outputPath}`);
 }
-
-console.log(`CV PDF written to ${outputPath}`);

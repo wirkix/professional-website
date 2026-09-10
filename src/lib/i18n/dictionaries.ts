@@ -36,8 +36,6 @@ const en = {
     pageTitle: "Curriculum Vitae",
     subtitle: "Alois Wirkes — Senior Software Engineer · Business Intelligence & Data",
     downloadButton: "Download CV as PDF",
-    downloadNote:
-      "Note: the downloadable PDF is currently only available in Spanish.",
     summary:
       "10+ years of experience in databases and data warehouses (Oracle, PostgreSQL, MySQL), ETLs (OWB, PDI), and building queries and analysis (PL/SQL) for visualization in Business Intelligence suites (OBI, Tableau, Power BI). Experience leading teams and BI projects, with an interest in project management and emerging technologies such as Artificial Intelligence, Big Data, NoSQL, and Machine Learning.",
     personalInfoHeading: "Personal Information",
@@ -277,7 +275,6 @@ const es = {
     pageTitle: "Currículum Vitae",
     subtitle: "Alois Wirkes — Senior Software Engineer · Business Intelligence & Datos",
     downloadButton: "Descargar CV en PDF",
-    downloadNote: "Nota: el PDF descargable está disponible solo en español por ahora.",
     summary:
       "Más de 10 años de experiencia en bases de datos y data warehouses (Oracle, PostgreSQL, MySQL), ETLs (OWB, PDI) y construcción de consultas y análisis (PL/SQL) para su visualización en suites de Business Intelligence (OBI, Tableau, Power BI). Experiencia liderando equipos de trabajo y proyectos BI, con interés en gerencia de proyectos y tecnologías emergentes como Inteligencia Artificial, Big Data, NoSQL y Machine Learning.",
     personalInfoHeading: "Información Personal",

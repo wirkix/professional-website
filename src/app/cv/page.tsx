@@ -29,8 +29,8 @@ export default async function CV() {
               {c.subtitle}
             </p>
             <a
-              href="/cv/alois-wirkes-cv.pdf"
-              download="Alois-Wirkes-CV.pdf"
+              href={locale === "en" ? "/cv/alois-wirkes-cv-en.pdf" : "/cv/alois-wirkes-cv.pdf"}
+              download={locale === "en" ? "Alois-Wirkes-CV.pdf" : "Alois-Wirkes-CV-ES.pdf"}
               className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-accent-500 text-brand-50 rounded-lg font-medium transition duration-200 hover:bg-accent-600"
             >
               <svg
@@ -50,9 +50,6 @@ export default async function CV() {
               </svg>
               {c.downloadButton}
             </a>
-            {locale === "en" && (
-              <p className="text-xs text-brand-400 mt-2">{c.downloadNote}</p>
-            )}
           </div>
 
           {/* Summary */}
