@@ -72,11 +72,22 @@ const projects = [
   {
     id: 5,
     title: "Lakehouse de Indicadores Económicos",
-    description: "Pipeline medallion (bronze/silver/gold) sobre indicadores económicos públicos de México (Banxico, INEGI), con MinIO, PySpark y DuckDB como stack local equivalente a S3/Glue/Athena",
-    technologies: ["Python", "PySpark", "MinIO", "DuckDB", "Tableau"],
+    description: "Pipeline medallion (bronze/silver/gold) sobre indicadores económicos públicos de México (Banxico, INEGI), con MinIO, PySpark y DuckDB como stack local equivalente a S3/Glue/Athena, orquestado con Airflow",
+    technologies: ["Python", "Airflow", "PySpark", "MinIO", "DuckDB", "Tableau"],
     image: "/projects/economic-lakehouse.jpg",
-    github: "https://github.com/wirkix/economic-lakehouse",
-    demo: null,
+    github: "https://github.com/wirkix/economic-pulse-lakehouse",
+    // Published to Tableau Public. Deliberately NOT the plain share link
+    // (public.tableau.com/views/.../EconomicPulseMxico?:language=es-ES&...
+    // &:redirect=auth) copied from the "Share" button -- that one 302s to
+    // the app/profile/.../viz/... page, which sends X-Frame-Options:
+    // SAMEORIGIN and can't be embedded (confirmed via curl -I). The
+    // `?:embed=y` viz URL below is the one Tableau's own embed snippet's
+    // <object> loads under the hood; it 200s with no X-Frame-Options/CSP
+    // frame-ancestors (confirmed via curl -I), so it works directly as an
+    // <iframe src> and is still a fully interactive standalone dashboard
+    // when opened directly via the Demo button.
+    demo: "https://public.tableau.com/views/EconomicPulse-Mexico/EconomicPulseMxico?:language=es-ES&:showVizHome=no&:embed=y",
+    livePreview: true,
     featured: false,
   },
   {
