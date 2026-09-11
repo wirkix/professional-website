@@ -26,7 +26,7 @@ const en = {
     specialty: "Senior Software Engineer · Business Intelligence & Data",
     availableBadge: "Available for remote work",
     description:
-      "10+ years of experience in databases and data warehouses (Oracle, PostgreSQL, MySQL), ETLs (OWB, PDI), and building analysis and dashboards in Business Intelligence suites (OBI, Tableau, Power BI). Explore my professional experience and portfolio of featured projects.",
+      "I'm a Business Intelligence and data engineering specialist with 10+ years of experience turning data from diverse sources into actionable insights and dashboards. My core expertise spans databases and data warehouses (Oracle, PostgreSQL, MySQL), ETLs (OWB, PDI), and building queries and analysis (PL/SQL) for visualization in BI suites (OBI, Tableau, Power BI) — increasingly complemented by AWS, Python, and dbt. I also have experience leading teams and BI projects, and I'm currently focused on integrating AI into data and BI workflows, alongside growing my project management skills. Explore my professional experience and portfolio of featured projects.",
     viewCvButton: "View CV",
     viewPortfolioButton: "View Portfolio",
     connectHeading: "Let's Connect",
@@ -37,7 +37,7 @@ const en = {
     subtitle: "Alois Wirkes — Senior Software Engineer · Business Intelligence & Data",
     downloadButton: "Download CV as PDF",
     summary:
-      "10+ years of experience in databases and data warehouses (Oracle, PostgreSQL, MySQL), ETLs (OWB, PDI), and building queries and analysis (PL/SQL) for visualization in Business Intelligence suites (OBI, Tableau, Power BI). Experience leading teams and BI projects, with an interest in project management and emerging technologies such as Artificial Intelligence, Big Data, NoSQL, and Machine Learning.",
+      "I'm a Business Intelligence and data engineering specialist with 10+ years of experience turning data from diverse sources into actionable insights and dashboards. My core expertise spans databases and data warehouses (Oracle, PostgreSQL, MySQL), ETLs (OWB, PDI), and building queries and analysis (PL/SQL) for visualization in BI suites (OBI, Tableau, Power BI) — increasingly complemented by AWS, Python, and dbt. I also have experience leading teams and BI projects, and I'm currently focused on integrating AI into data and BI workflows, alongside growing my project management skills.",
     personalInfoHeading: "Personal Information",
     labels: {
       name: "Name",
@@ -265,7 +265,7 @@ const es = {
     specialty: "Senior Software Engineer · Business Intelligence & Datos",
     availableBadge: "Disponible para trabajo remoto",
     description:
-      "Más de 10 años de experiencia en bases de datos y data warehouses (Oracle, PostgreSQL, MySQL), ETLs (OWB, PDI) y desarrollo de análisis y dashboards en suites de Business Intelligence (OBI, Tableau, Power BI). Explora mi experiencia profesional y mi portafolio de proyectos destacados.",
+      "Soy especialista en Business Intelligence e ingeniería de datos con más de 10 años de experiencia transformando datos de diversas fuentes en insights y dashboards accionables. Mi experiencia principal abarca bases de datos y data warehouses (Oracle, PostgreSQL, MySQL), ETLs (OWB, PDI) y construcción de consultas y análisis (PL/SQL) para su visualización en suites de Business Intelligence (OBI, Tableau, Power BI), cada vez más complementada con AWS, Python y dbt. También tengo experiencia liderando equipos de trabajo y proyectos BI, y actualmente me enfoco en integrar IA en flujos de trabajo de datos y BI, además de desarrollar habilidades de gerencia de proyectos. Explora mi experiencia profesional y mi portafolio de proyectos destacados.",
     viewCvButton: "Ver Currículum",
     viewPortfolioButton: "Ver Portafolio",
     connectHeading: "¿Conectamos?",
@@ -276,7 +276,7 @@ const es = {
     subtitle: "Alois Wirkes — Senior Software Engineer · Business Intelligence & Datos",
     downloadButton: "Descargar CV en PDF",
     summary:
-      "Más de 10 años de experiencia en bases de datos y data warehouses (Oracle, PostgreSQL, MySQL), ETLs (OWB, PDI) y construcción de consultas y análisis (PL/SQL) para su visualización en suites de Business Intelligence (OBI, Tableau, Power BI). Experiencia liderando equipos de trabajo y proyectos BI, con interés en gerencia de proyectos y tecnologías emergentes como Inteligencia Artificial, Big Data, NoSQL y Machine Learning.",
+      "Soy especialista en Business Intelligence e ingeniería de datos con más de 10 años de experiencia transformando datos de diversas fuentes en insights y dashboards accionables. Mi experiencia principal abarca bases de datos y data warehouses (Oracle, PostgreSQL, MySQL), ETLs (OWB, PDI) y construcción de consultas y análisis (PL/SQL) para su visualización en suites de Business Intelligence (OBI, Tableau, Power BI), cada vez más complementada con AWS, Python y dbt. También tengo experiencia liderando equipos de trabajo y proyectos BI, y actualmente me enfoco en integrar IA en flujos de trabajo de datos y BI, además de desarrollar habilidades de gerencia de proyectos.",
     personalInfoHeading: "Información Personal",
     labels: {
       name: "Nombre",
