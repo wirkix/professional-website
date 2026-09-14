@@ -60,8 +60,16 @@ const en = {
         role: "Senior Software Engineer",
         companyLine: "KAVAK.com · Caracas, Venezuela · June 2020 - Present",
         bullets: [
-          "Data engineering and Business Intelligence: turning diverse data into insights and dashboards using AWS, Python, and dbt",
-          "Integrating AI solutions into analytics workflows to increase the impact of data products",
+          "Built NetSuite extraction from scratch: after a native Workato connector failed, engineered a custom pipeline on AWS Glue using NetSuite's JDBC driver; it now runs stably across three instances (Global: Mexico and the UAE, with legacy EMEA data; Hispanic South America: mainly Argentina and Chile; and a dedicated Brazil instance)",
+          "Independently led the migration of the Global NetSuite instance to the new NetSuite2.com data source, remapping renamed tables/columns with no disruption to downstream models",
+          "Built the Salesforce extraction pipeline (AWS AppFlow; Global and Hispanic South America instances), introduced to take load off NetSuite as client-facing workflows scaled with company growth",
+          "Own 15+ third-party data integrations end-to-end (Twilio, Amplitude, Slack, Jira, Vapi, Workday, among others), having built Reclame Aqui, Incent, and Repsly fully from scratch",
+          // TODO: quantify with a concrete % once available (Glue cost reduction from the dbt migration)
+          "Contributed to the team's shift from hand-rolled Glue+Athena/Redshift queries to dbt (led by then-manager) by standing up a dedicated Redshift sandbox repository, helping both new and experienced engineers onboard onto the new workflow quickly",
+          "Played a hands-on engineering role in migrating the data platform from Redshift to Databricks (evaluated against Snowflake, led by current manager) to unify dashboards, integrated AI (Genie), and MLflow-based model training: migrated dbt models into the new Databricks repos and built the first automation \"skills\" to accelerate that migration",
+          // TODO: quantify with concrete numbers once available (S3 request/storage reduction from the Parquet compaction)
+          "Implemented Parquet compaction across the NetSuite and Salesforce landing zones to cut S3 request volume and free up storage; maintain Airflow-orchestrated extraction pipelines and their credential/table lifecycle",
+          "Adopted AI-assisted engineering tooling (Cursor, Claude Code) into daily workflows and built internal data tools and skills to streamline other developers' work",
         ],
       },
       {
@@ -299,8 +307,16 @@ const es = {
         role: "Senior Software Engineer",
         companyLine: "KAVAK.com · Caracas, Venezuela · Junio 2020 - Presente",
         bullets: [
-          "Ingeniería de datos y Business Intelligence: transformación de datos diversos en insights y dashboards mediante AWS, Python y DBT",
-          "Integración de soluciones de IA en los flujos de análisis para incrementar el impacto de los productos de datos",
+          "Construí la extracción de NetSuite desde cero: tras el fallo de un conector nativo de Workato, diseñé un pipeline personalizado en AWS Glue usando el driver JDBC de NetSuite; hoy corre de forma estable en tres instancias (Global: México y Emiratos Árabes, con datos legacy de EMEA; Hispanoamérica Sur: principalmente Argentina y Chile; y una instancia dedicada para Brasil)",
+          "Lideré en solitario la migración de la instancia Global de NetSuite al nuevo datasource NetSuite2.com, remapeando tablas y columnas renombradas sin interrumpir los modelos downstream",
+          "Construí el pipeline de extracción de Salesforce (AWS AppFlow; instancias Global e Hispanoamérica Sur), introducido para descongestionar a NetSuite a medida que los flujos orientados a clientes escalaban con el crecimiento de la empresa",
+          "Soy dueño de 15+ integraciones de fuentes externas de principio a fin (Twilio, Amplitude, Slack, Jira, Vapi, Workday, entre otras), habiendo construido Reclame Aqui, Incent y Repsly totalmente desde cero",
+          // TODO: cuantificar con un % concreto cuando esté disponible (reducción de costo de Glue tras la migración a dbt)
+          "Contribuí al cambio del equipo de queries manuales sobre Glue+Athena/Redshift hacia dbt (liderado por mi jefe de ese momento) montando un repositorio de playground dedicado en Redshift, facilitando que tanto desarrolladores nuevos como experimentados adoptaran el nuevo flujo rápidamente",
+          "Tuve un rol técnico protagónico en la migración de la plataforma de datos de Redshift a Databricks (evaluado frente a Snowflake, liderado por mi jefe actual) para unificar dashboards, IA integrada (Genie) y entrenamiento de modelos con MLflow: migré los modelos de dbt a los nuevos repositorios de Databricks y desarrollé las primeras \"skills\" de automatización para acelerar esa migración",
+          // TODO: cuantificar con números concretos cuando estén disponibles (reducción de peticiones/almacenamiento en S3 tras la compactación a Parquet)
+          "Implementé compactación a Parquet en las capas landing de NetSuite y Salesforce para reducir peticiones a S3 y liberar almacenamiento; mantengo la orquestación de las extracciones con Airflow y el ciclo de vida de credenciales/tablas",
+          "Adopté herramientas de desarrollo asistidas por IA (Cursor, Claude Code) en el flujo de trabajo diario y construí herramientas y skills internas de datos para facilitar el trabajo de otros desarrolladores",
         ],
       },
       {
