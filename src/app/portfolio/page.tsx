@@ -101,11 +101,10 @@ const projects = [
     id: 6 as const,
     technologies: ["dbt", "Databricks", "GitHub Actions", "Metabase"],
     image: "/projects/elt-warehouse-ci.jpg",
-    // No repo yet -- github.com/wirkix/elt-warehouse-ci doesn't exist
-    // (confirmed via `gh repo view`: 404). Roadmap card, not a published
-    // project; leave github null until the repo is real, or the "Código"
-    // button would link to a 404.
-    github: null,
+    github: "https://github.com/wirkix/elt-warehouse-ci",
+    // Metabase demo needs a self-hosted VM + domain (see the repo's
+    // metabase/SETUP.md) -- not live yet. Add the public dashboard link
+    // here once that's up.
     demo: null,
     featured: false,
   },
