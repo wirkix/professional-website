@@ -114,12 +114,15 @@ const projects = [
   },
   {
     id: 7 as const,
-    technologies: ["Jupyter", "scikit-learn", "Prophet", "SQL Server", "Plotly"],
-    image: "/projects/demand-forecasting.jpg",
-    // Same as elt-warehouse-ci above -- github.com/wirkix/demand-forecasting
-    // doesn't exist yet either (confirmed via `gh repo view`: 404).
-    github: null,
-    demo: null,
+    technologies: ["Python", "DuckDB", "MySQL", "scikit-learn", "Prophet", "Jupyter", "Plotly", "GitHub Actions"],
+    image: "/projects/nyc-taxi-demand-forecast.jpg",
+    github: "https://github.com/wirkix/nyc-taxi-demand-forecast",
+    // The papermill-executed notebook report, rebuilt weekly by the repo's
+    // Refresh workflow. GitHub Pages sends no X-Frame-Options or
+    // frame-ancestors CSP (checked 2026-09-23 via curl -I), so it iframes
+    // as a live preview the same way elt-warehouse-ci's Metabase link does.
+    demo: "https://wirkix.github.io/nyc-taxi-demand-forecast/",
+    livePreview: true,
     featured: false,
   },
 ];
