@@ -102,10 +102,14 @@ const projects = [
     technologies: ["dbt", "Databricks", "GitHub Actions", "Metabase"],
     image: "/projects/elt-warehouse-ci.jpg",
     github: "https://github.com/wirkix/elt-warehouse-ci",
-    // Metabase demo needs a self-hosted VM + domain (see the repo's
-    // metabase/SETUP.md) -- not live yet. Add the public dashboard link
-    // here once that's up.
-    demo: null,
+    // Metabase's own public-dashboard link (Admin -> Sharing -> Public
+    // Sharing). Confirmed embeddable 2026-09-23 via curl -I: sends
+    // `frame-ancestors *` and no X-Frame-Options, unlike motor-analytics's
+    // demo link which had to fall back to a plain screenshot over this
+    // exact issue -- Metabase's public links are designed to be iframed,
+    // so no such workaround needed here.
+    demo: "https://elt-warehouse-ci.duckdns.org/public/dashboard/c6300a60-915c-4124-92e1-0c208669061c",
+    livePreview: true,
     featured: false,
   },
   {

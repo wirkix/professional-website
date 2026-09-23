@@ -205,7 +205,7 @@ const en = {
       6: {
         title: "ELT Warehouse with Continuous Integration",
         description:
-          "Modern warehouse on Databricks Community Edition with tested and documented dbt models, deployed through a continuous-integration pipeline in GitHub Actions",
+          "Modern warehouse on Databricks Free Edition with tested and documented dbt models, deployed through a continuous-integration pipeline in GitHub Actions, visualized in a self-hosted Metabase dashboard",
       },
       7: {
         title: "Demand Forecasting Lab",
@@ -452,7 +452,7 @@ const es = {
       6: {
         title: "Warehouse ELT con Integración Continua",
         description:
-          "Warehouse moderno en Databricks Community Edition con modelos dbt probados y documentados, desplegado mediante un pipeline de integración continua en GitHub Actions",
+          "Warehouse moderno en Databricks Free Edition con modelos dbt probados y documentados, desplegado mediante un pipeline de integración continua en GitHub Actions, visualizado en un dashboard de Metabase autoalojado",
       },
       7: {
         title: "Laboratorio de Pronóstico de Demanda",
