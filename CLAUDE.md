@@ -10,10 +10,11 @@ Router, TypeScript, Tailwind CSS v4, and Supabase (client wired up, not yet
 used by any page — see "Supabase / auth" below). See
 [README.md](README.md) for setup/run instructions aimed at a human.
 
-Home page and CV page content is real (name, bio, experience, education,
-skills, contact links — sourced from the owner's CV and LinkedIn export).
-The portfolio page's project list is still placeholder data — see "Known
-gotchas / history" below.
+All content is real and bilingual (English/Spanish, switched by
+`LanguageSwitcher`). Home and CV content comes from the owner's CV and
+LinkedIn export. The portfolio lists seven real projects: Arte y Esencia
+plus the six data-pipeline projects from the owner's portfolio roadmap,
+each in its own `wirkix/*` repo, most with a live embedded demo.
 
 ## Stack
 
@@ -46,13 +47,22 @@ src/app/
   layout.tsx        # root layout, metadata
   page.tsx           # home page (hero, bio, social/contact links incl. WhatsApp)
   cv/page.tsx         # CV page (personal info, experience, education, skills,
-                      # "Descargar CV en PDF" button)
-  portfolio/page.tsx  # portfolio page (project data is inline in the file,
-                      # still placeholder)
+                      # PDF download button -- per-language file)
+  portfolio/page.tsx  # portfolio page: per-project metadata (tech chips,
+                      # github/demo links, livePreview/hasImage flags) inline;
+                      # titles/descriptions come from the i18n dictionaries
+  projects/job-market-radar/page.tsx  # static Power BI report page for one card
   globals.css         # Tailwind v4 theme tokens (brand-* / accent-* colors)
 src/components/
-  Header.tsx          # shared nav: internal links (Inicio/CV/Portafolio) +
-                      # external links (LinkedIn/Upwork/GitHub)
+  Header.tsx          # shared nav: internal links (Home/CV/Portfolio) +
+                      # external links (LinkedIn/Upwork/GitHub/Stack Overflow)
+  LanguageSwitcher.tsx  # EN/ES toggle
+  LivePreview.tsx     # scaled-down non-interactive iframe of a card's demo
+  TechTags.tsx        # tech chips with "+N" expand
+  ExpandableText.tsx  # "Show more" for long card descriptions
+src/lib/i18n/
+  dictionaries.ts     # ALL user-facing copy, `en` + `es` (es typed against en,
+                      # so a key missing from one fails the build)
 src/lib/supabase/
   client.ts           # browser Supabase client (createBrowserClient)
   server.ts            # server-side Supabase client (createServerClient, cookies())
@@ -60,9 +70,13 @@ src/lib/supabase/
 src/middleware.ts       # runs updateSession() on every non-static request
 public/
   images/alois-wirkes.jpg  # profile photo (home page + CV page)
-  cv/alois-wirkes-cv.pdf    # downloadable CV, generated — see "CV PDF" below
+  cv/alois-wirkes-cv.pdf    # downloadable CV (Spanish), generated — see "CV PDF" below
+  cv/alois-wirkes-cv-en.pdf # downloadable CV (English), generated
+  projects/*.jpg             # card screenshots (only motor-analytics.jpg exists)
+  files/                     # downloadable project artifacts (.pbix, .twb)
 scripts/cv-pdf/
-  cv.template.html           # source of truth for the CV PDF's content/design
+  cv.template.html           # source of the Spanish CV PDF's content/design
+  cv.template.en.html        # source of the English CV PDF
   generate.mjs                # renders the template to PDF via headless
                                # Chrome/Edge (`npm run cv:pdf`)
 ```
@@ -89,17 +103,23 @@ That means:
 
 ## CV PDF
 
-The "Descargar CV en PDF" button on `/cv` serves a static file at
-`public/cv/alois-wirkes-cv.pdf`. That file is **generated, not hand-edited** —
-it's rendered from [scripts/cv-pdf/cv.template.html](scripts/cv-pdf/cv.template.html)
-(a self-contained HTML/CSS resume matching the original CV design) via
+The PDF download button on `/cv` serves a static file that depends on the
+site's language: `public/cv/alois-wirkes-cv.pdf` (Spanish) or
+`public/cv/alois-wirkes-cv-en.pdf` (English). Both files are **generated,
+not hand-edited**. They're rendered from
+[scripts/cv-pdf/cv.template.html](scripts/cv-pdf/cv.template.html) and
+[scripts/cv-pdf/cv.template.en.html](scripts/cv-pdf/cv.template.en.html)
+(self-contained HTML/CSS resumes matching the original CV design) via
 headless Chrome/Edge's `--print-to-pdf`, run by
-[scripts/cv-pdf/generate.mjs](scripts/cv-pdf/generate.mjs).
+[scripts/cv-pdf/generate.mjs](scripts/cv-pdf/generate.mjs), which
+renders both in one run.
 
-**The template and `src/app/cv/page.tsx` are two independent copies of the
-same content — nothing keeps them in sync automatically.** Whenever you edit
-one, edit the other to match, then run `npm run cv:pdf` to re-render the PDF
-and commit the updated binary alongside the code change. The template uses a
+**The two templates and the `cv` section of
+`src/lib/i18n/dictionaries.ts` (`en` and `es`) are independent copies of
+the same content — nothing keeps them in sync automatically.** Whenever you
+edit one, edit the others to match, then run `npm run cv:pdf` to re-render
+both PDFs and commit the updated binaries alongside the code change. Each
+template uses a
 `{{PHOTO_SRC}}` placeholder that the script fills in with a `file://` URL to
 `public/images/alois-wirkes.jpg` — don't hardcode an absolute path in the
 template itself, it won't be portable across machines.
@@ -144,20 +164,25 @@ fails with no build-time signal.
   (`remotePatterns: [{ hostname: "**" }]`) because the site's images are
   admin-supplied external URLs. Tighten this to specific hostnames if the
   image source ever becomes untrusted/user-supplied.
-- `portfolio/page.tsx`'s project list (titles, descriptions, GitHub/demo
-  links) is still placeholder data. Each project object also has an `image`
-  field pointing at `/projects/*.jpg` — for most projects those files still
-  don't exist in `public/`, and rendering is gated on a separate `hasImage:
-  true` flag (not just a truthy `image`), so cards without it correctly
-  fall back to the plain "Imagen del proyecto" placeholder `<div>` instead
-  of a broken `<Image>`. motor-analytics is the one exception so far
-  (`public/projects/motor-analytics.jpg`, a real screenshot — see its
-  inline comment for why `livePreview` isn't used there instead). Add
-  `hasImage: true` to another project only once its actual image file
-  exists. `page.tsx` and `cv/page.tsx` content is real.
-- The CV PDF (`public/cv/alois-wirkes-cv.pdf`) is a build artifact of
-  `scripts/cv-pdf/cv.template.html`, not source — see "CV PDF" above before
-  editing CV content in only one place.
+- **Portfolio card thumbnails, in priority order:** `livePreview: true`
+  embeds the card's `demo` (or `report`) URL in a `LivePreview` iframe;
+  otherwise `hasImage: true` renders the `image` file; otherwise the
+  plain "Imagen del proyecto" placeholder `<div>`. Only set `livePreview`
+  after checking with `curl -I` that the demo URL sends no
+  `X-Frame-Options` or restrictive `frame-ancestors` CSP (each card's
+  inline comment records that check). Streamlit Community Cloud fails it,
+  which is why motor-analytics uses a real screenshot
+  (`public/projects/motor-analytics.jpg`) instead. The other `image` paths
+  point at files that don't exist, so never add `hasImage: true` until the
+  file is actually in `public/`.
+- Each portfolio project is a separate repo with its own `CLAUDE.md`.
+  When a project's stack, links or scope changes, update its card's
+  metadata here (`portfolio/page.tsx`) *and* its title/description in
+  both `en` and `es` in `dictionaries.ts`.
+- The CV PDFs (`public/cv/alois-wirkes-cv.pdf` / `-en.pdf`) are build
+  artifacts of `scripts/cv-pdf/cv.template.html` / `cv.template.en.html`,
+  not source. See "CV PDF" above before editing CV content in only one
+  place.
 
 ## Deployment
 
