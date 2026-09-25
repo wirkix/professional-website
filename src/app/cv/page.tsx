@@ -74,7 +74,7 @@ export default async function CV() {
               </div>
               <div>
                 <p><span className="font-medium text-brand-800">{c.labels.phone}:</span> <span className="text-brand-900">+52 722 5570964</span></p>
-                <p><span className="font-medium text-brand-800">{c.labels.email}:</span> <span className="text-brand-900"><a href="mailto:alois.wirkes@gmail.com" className="text-brand-500 hover:underline">alois.wirkes@gmail.com</a></span></p>
+                <p><span className="font-medium text-brand-800">{c.labels.email}:</span> <span className="text-brand-900"><a href="mailto:hola@aloiswirkes.com" className="text-brand-500 hover:underline">hola@aloiswirkes.com</a></span></p>
                 <p><span className="font-medium text-brand-800">{c.labels.linkedin}:</span> <span className="text-brand-900"><a href="https://www.linkedin.com/in/alois-wirkes/" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">{c.labels.viewProfile}</a></span></p>
                 <p><span className="font-medium text-brand-800">{c.labels.github}:</span> <span className="text-brand-900"><a href="https://github.com/wirkix" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">{c.labels.viewProfile}</a></span></p>
                 <p><span className="font-medium text-brand-800">{c.labels.upwork}:</span> <span className="text-brand-900"><a href="https://www.upwork.com/freelancers/~01e9f20bfb142f07cb" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">{c.labels.viewProfile}</a></span></p>
