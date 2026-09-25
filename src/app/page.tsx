@@ -103,7 +103,7 @@ export default async function Home() {
               WhatsApp →
             </a>
             <a
-              href="mailto:alois.wirkes@gmail.com"
+              href="mailto:hola@aloiswirkes.com"
               rel="noopener noreferrer"
               className="text-brand-100 hover:text-accent-400 transition duration-200 flex items-center gap-2"
             >

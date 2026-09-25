@@ -4,7 +4,7 @@ Alois Wirkes' personal portfolio site: a home page, a CV page (`/cv`), and a
 project portfolio page (`/portfolio`). Built with Next.js App Router,
 TypeScript, Tailwind CSS v4, and Supabase.
 
-Live at: https://professional-website-seven-ebon.vercel.app/
+Live at: https://www.aloiswirkes.com/
 
 ## Stack
 
